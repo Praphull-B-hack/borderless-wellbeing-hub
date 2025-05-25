@@ -7,6 +7,7 @@ import FeaturesSection from '../components/FeaturesSection';
 import ServicesSection from '../components/ServicesSection';
 import CommunitySection from '../components/CommunitySection';
 import DashboardSection from '../components/DashboardSection';
+import StudentIdeasSection from '../components/StudentIdeasSection';
 import Footer from '../components/Footer';
 import AuthModal from '../components/AuthModal';
 
@@ -20,7 +21,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       <Navigation onAuthClick={openAuthModal} />
       
       <main>
@@ -30,6 +31,7 @@ const Index = () => {
         <ServicesSection />
         <CommunitySection />
         <DashboardSection />
+        <StudentIdeasSection />
       </main>
 
       <Footer />

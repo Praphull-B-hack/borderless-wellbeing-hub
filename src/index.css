@@ -88,6 +88,51 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* Dark mode text fixes */
+  .dark * {
+    color: rgb(248 250 252) !important;
+  }
+
+  .dark .text-gray-900 {
+    color: rgb(248 250 252) !important;
+  }
+
+  .dark .text-gray-800 {
+    color: rgb(226 232 240) !important;
+  }
+
+  .dark .text-gray-700 {
+    color: rgb(203 213 225) !important;
+  }
+
+  .dark .text-gray-600 {
+    color: rgb(148 163 184) !important;
+  }
+
+  .dark .text-gray-500 {
+    color: rgb(100 116 139) !important;
+  }
+
+  /* Fix text overlapping issues */
+  .container, .max-w-7xl, .max-w-6xl, .max-w-5xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container, .max-w-7xl, .max-w-6xl, .max-w-5xl {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container, .max-w-7xl, .max-w-6xl, .max-w-5xl {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
 }
 
 @layer components {
@@ -133,4 +178,65 @@
 
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #9ca3af;
+}
+
+/* Animation keyframes for assembling effect */
+@keyframes assembleFromLeft {
+  0% {
+    transform: translateX(-100px) rotate(-15deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes assembleFromRight {
+  0% {
+    transform: translateX(100px) rotate(15deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes assembleFromTop {
+  0% {
+    transform: translateY(-100px) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes assembleFromBottom {
+  0% {
+    transform: translateY(100px) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-assemble-left {
+  animation: assembleFromLeft 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-assemble-right {
+  animation: assembleFromRight 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-assemble-top {
+  animation: assembleFromTop 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-assemble-bottom {
+  animation: assembleFromBottom 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
