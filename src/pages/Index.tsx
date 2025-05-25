@@ -1,12 +1,45 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState } from 'react';
+import Navigation from '../components/Navigation';
+import HeroSection from '../components/HeroSection';
+import MissionSection from '../components/MissionSection';
+import FeaturesSection from '../components/FeaturesSection';
+import ServicesSection from '../components/ServicesSection';
+import CommunitySection from '../components/CommunitySection';
+import DashboardSection from '../components/DashboardSection';
+import Footer from '../components/Footer';
+import AuthModal from '../components/AuthModal';
 
 const Index = () => {
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
+
+  const openAuthModal = (mode: 'login' | 'register') => {
+    setAuthMode(mode);
+    setIsAuthModalOpen(true);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-white">
+      <Navigation onAuthClick={openAuthModal} />
+      
+      <main>
+        <HeroSection onGetStarted={() => openAuthModal('register')} />
+        <MissionSection />
+        <FeaturesSection />
+        <ServicesSection />
+        <CommunitySection />
+        <DashboardSection />
+      </main>
+
+      <Footer />
+
+      <AuthModal 
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        mode={authMode}
+        onModeChange={setAuthMode}
+      />
     </div>
   );
 };
