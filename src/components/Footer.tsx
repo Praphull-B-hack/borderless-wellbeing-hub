@@ -1,10 +1,14 @@
 
 import React from 'react';
-import { Heart, Globe, Mail, Phone, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Heart, Mail, Phone, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 dark:bg-black text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -13,11 +17,10 @@ const Footer = () => {
               <div className="p-2 bg-wellness-blue-500 rounded-lg">
                 <Heart className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xl font-bold font-poppins">Borderless Wellbeing</span>
+              <span className="text-xl font-bold font-poppins">{t('footer.company')}</span>
             </div>
             <p className="text-gray-300 leading-relaxed">
-              Connecting global communities to promote mental and physical wellbeing across all borders. 
-              Your health journey knows no boundaries.
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-wellness-blue-400 transition-colors">
@@ -81,18 +84,7 @@ const Footer = () => {
             {/* Language Selector */}
             <div className="pt-4">
               <h4 className="text-sm font-semibold mb-2">Language</h4>
-              <div className="flex items-center space-x-2 bg-gray-800 rounded-lg p-2">
-                <Globe className="h-4 w-4 text-wellness-green-400" />
-                <select className="bg-transparent text-white text-sm border-none outline-none">
-                  <option value="en">English</option>
-                  <option value="es">Español</option>
-                  <option value="fr">Français</option>
-                  <option value="de">Deutsch</option>
-                  <option value="zh">中文</option>
-                  <option value="ja">日本語</option>
-                  <option value="ar">العربية</option>
-                </select>
-              </div>
+              <LanguageSelector />
             </div>
           </div>
         </div>
