@@ -26,43 +26,107 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: '#2563eb',
+					DEFAULT: '#667eea',
 					foreground: '#ffffff',
-					50: '#eff6ff',
-					100: '#dbeafe',
-					500: '#3b82f6',
-					600: '#2563eb',
-					700: '#1d4ed8'
+					50: '#f0f4ff',
+					100: '#e0edff',
+					200: '#c7dbff',
+					300: '#a4c2ff',
+					400: '#819eff',
+					500: '#667eea',
+					600: '#5a67d8',
+					700: '#4c51bf',
+					800: '#434190',
+					900: '#3c366b'
 				},
 				secondary: {
-					DEFAULT: '#10b981',
+					DEFAULT: '#764ba2',
 					foreground: '#ffffff',
-					50: '#ecfdf5',
-					100: '#d1fae5',
-					500: '#10b981',
-					600: '#059669',
-					700: '#047857'
+					50: '#f7f5ff',
+					100: '#ede9fe',
+					200: '#ddd6fe',
+					300: '#c4b5fd',
+					400: '#a78bfa',
+					500: '#8b5cf6',
+					600: '#764ba2',
+					700: '#6d28d9',
+					800: '#5b21b6',
+					900: '#4c1d95'
+				},
+				accent: {
+					DEFAULT: '#f093fb',
+					foreground: '#ffffff',
+					50: '#fdf4ff',
+					100: '#fae8ff',
+					200: '#f5d0fe',
+					300: '#f0abfc',
+					400: '#e879f9',
+					500: '#d946ef',
+					600: '#c026d3',
+					700: '#a21caf',
+					800: '#86198f',
+					900: '#701a75'
 				},
 				wellness: {
 					blue: {
-						50: '#f0f9ff',
-						100: '#e0f2fe',
-						200: '#bae6fd',
-						300: '#7dd3fc',
-						400: '#38bdf8',
-						500: '#0ea5e9',
-						600: '#0284c7',
-						700: '#0369a1'
+						50: '#f0f4ff',
+						100: '#e0edff',
+						200: '#c7dbff',
+						300: '#a4c2ff',
+						400: '#819eff',
+						500: '#667eea',
+						600: '#5a67d8',
+						700: '#4c51bf',
+						800: '#434190',
+						900: '#3c366b'
 					},
 					green: {
-						50: '#f0fdf4',
+						50: '#f0fdf9',
 						100: '#dcfce7',
 						200: '#bbf7d0',
 						300: '#86efac',
 						400: '#4ade80',
 						500: '#22c55e',
 						600: '#16a34a',
-						700: '#15803d'
+						700: '#15803d',
+						800: '#166534',
+						900: '#14532d'
+					},
+					purple: {
+						50: '#faf5ff',
+						100: '#f3e8ff',
+						200: '#e9d5ff',
+						300: '#d8b4fe',
+						400: '#c084fc',
+						500: '#a855f7',
+						600: '#9333ea',
+						700: '#7c3aed',
+						800: '#6b21a8',
+						900: '#581c87'
+					},
+					pink: {
+						50: '#fdf2f8',
+						100: '#fce7f3',
+						200: '#fbcfe8',
+						300: '#f9a8d4',
+						400: '#f472b6',
+						500: '#ec4899',
+						600: '#db2777',
+						700: '#be185d',
+						800: '#9d174d',
+						900: '#831843'
+					},
+					orange: {
+						50: '#fff7ed',
+						100: '#ffedd5',
+						200: '#fed7aa',
+						300: '#fdba74',
+						400: '#fb923c',
+						500: '#f97316',
+						600: '#ea580c',
+						700: '#c2410c',
+						800: '#9a3412',
+						900: '#7c2d12'
 					}
 				},
 				destructive: {
@@ -72,10 +136,6 @@ export default {
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'
-				},
-				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -149,6 +209,23 @@ export default {
 					'50%': {
 						transform: 'translateY(-10px)'
 					}
+				},
+				'rainbow-glow': {
+					'0%': { boxShadow: '0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080' },
+					'25%': { boxShadow: '0 0 20px #0080ff, 0 0 30px #0080ff, 0 0 40px #0080ff' },
+					'50%': { boxShadow: '0 0 20px #80ff00, 0 0 30px #80ff00, 0 0 40px #80ff00' },
+					'75%': { boxShadow: '0 0 20px #ff8000, 0 0 30px #ff8000, 0 0 40px #ff8000' },
+					'100%': { boxShadow: '0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080' }
+				},
+				'pulse-rainbow': {
+					'0%, 100%': { 
+						background: 'linear-gradient(45deg, #667eea, #764ba2)',
+						transform: 'scale(1)'
+					},
+					'50%': { 
+						background: 'linear-gradient(45deg, #f093fb, #f5576c)',
+						transform: 'scale(1.05)'
+					}
 				}
 			},
 			animation: {
@@ -156,7 +233,9 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.6s ease-out',
 				'slide-in-left': 'slide-in-left 0.6s ease-out',
-				'float': 'float 3s ease-in-out infinite'
+				'float': 'float 3s ease-in-out infinite',
+				'rainbow-glow': 'rainbow-glow 3s ease-in-out infinite',
+				'pulse-rainbow': 'pulse-rainbow 2s ease-in-out infinite'
 			}
 		}
 	},

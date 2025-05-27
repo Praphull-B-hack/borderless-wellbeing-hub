@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Send, Lightbulb, User, Mail, MessageSquare } from 'lucide-react';
+import { Send, Lightbulb, User, Mail, MessageSquare, Users, Globe } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
