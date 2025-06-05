@@ -1,63 +1,49 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Users, Globe, Heart, ThumbsUp, MoreHorizontal } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Send, Heart, Smile, MoreHorizontal, Users, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-interface ChatMessage {
-  id: number;
-  user: string;
-  message: string;
-  timestamp: Date;
-  country: string;
-  avatar: string;
-  likes?: number;
-  isLiked?: boolean;
-}
-
 const CommunityChat = () => {
-  const { t } = useLanguage();
-  const [messages, setMessages] = useState<ChatMessage[]>([
+  const [messages, setMessages] = useState([
     {
       id: 1,
-      user: 'Maria Santos',
-      message: 'Hello everyone! Looking for study partners for my linguistics course. Anyone interested in European language studies?',
-      timestamp: new Date(Date.now() - 5 * 60000),
-      country: 'Spain',
-      avatar: '🇪🇸',
+      user: 'Elena Rodriguez',
+      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=40&h=40&fit=crop&crop=face',
+      message: 'Hey everyone! Just joined the European History study group. Excited to collaborate on our Renaissance project! 🎨',
+      time: '2 mins ago',
       likes: 12,
-      isLiked: false
+      country: 'Spain',
+      isOnline: true
     },
     {
       id: 2,
-      user: 'Klaus Mueller',
-      message: 'Has anyone participated in the Erasmus exchange program? I need some advice about studying in France.',
-      timestamp: new Date(Date.now() - 3 * 60000),
-      country: 'Germany',
-      avatar: '🇩🇪',
+      user: 'Marcus Weber',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face',
+      message: 'Welcome Elena! I\'m working on the same topic. Would love to share resources about Italian Renaissance art.',
+      time: '1 min ago',
       likes: 8,
-      isLiked: true
+      country: 'Germany',
+      isOnline: true
     },
     {
       id: 3,
-      user: 'Sophie Laurent',
-      message: 'Sharing my notes from the European History seminar. They cover medieval trade routes! DM me if interested.',
-      timestamp: new Date(Date.now() - 1 * 60000),
-      country: 'France',
-      avatar: '🇫🇷',
+      user: 'Sophie Chen',
+      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face',
+      message: 'I have access to some amazing digital archives from the Louvre! Happy to share access with the group 📚',
+      time: '30 secs ago',
       likes: 15,
-      isLiked: false
+      country: 'France',
+      isOnline: true
     }
   ]);
+
   const [newMessage, setNewMessage] = useState('');
-  const [onlineUsers] = useState(247);
   const [isTyping, setIsTyping] = useState(false);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -66,34 +52,30 @@ const CommunityChat = () => {
 
   const handleSendMessage = () => {
     if (newMessage.trim()) {
-      const message: ChatMessage = {
+      const message = {
         id: messages.length + 1,
         user: 'You',
+        avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face',
         message: newMessage,
-        timestamp: new Date(),
-        country: 'Your Country',
-        avatar: '🌍',
+        time: 'now',
         likes: 0,
-        isLiked: false
+        country: 'Your Country',
+        isOnline: true
       };
       setMessages([...messages, message]);
       setNewMessage('');
-      
-      // Simulate typing indicator
-      setIsTyping(true);
-      setTimeout(() => setIsTyping(false), 2000);
     }
   };
 
-  const handleLikeMessage = (messageId: number) => {
-    setMessages(messages.map(msg => {
-      if (msg.id === messageId) {
-        const newLikes = msg.isLiked ? (msg.likes || 0) - 1 : (msg.likes || 0) + 1;
-        return { ...msg, likes: newLikes, isLiked: !msg.isLiked };
-      }
-      return msg;
-    }));
+  const handleLike = (messageId: number) => {
+    setMessages(messages.map(msg => 
+      msg.id === messageId 
+        ? { ...msg, likes: msg.likes + 1 }
+        : msg
+    ));
   };
+
+  const emojis = ['😊', '👍', '❤️', '🎉', '📚', '🌟', '💡', '🚀'];
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -102,190 +84,237 @@ const CommunityChat = () => {
     }
   };
 
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const simulateTyping = () => {
+    setIsTyping(true);
+    setTimeout(() => {
+      setIsTyping(false);
+      const responses = [
+        "That sounds like a great project! Count me in! 🙌",
+        "I'd love to join the study session. What time works for everyone?",
+        "Has anyone tried the new language exchange feature? It's amazing!",
+        "Looking for a study buddy for calculus. Anyone interested? 📐"
+      ];
+      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+      const newMsg = {
+        id: messages.length + Math.random(),
+        user: 'Anna Kowalski',
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&h=40&fit=crop&crop=face',
+        message: randomResponse,
+        time: 'just now',
+        likes: Math.floor(Math.random() * 10),
+        country: 'Poland',
+        isOnline: true
+      };
+      setMessages(prev => [...prev, newMsg]);
+    }, 2000);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (Math.random() > 0.7) {
+        simulateTyping();
+      }
+    }, 15000);
+
+    return () => clearInterval(interval);
+  }, [messages.length]);
+
   return (
-    <Card className="h-96 flex flex-col bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 shadow-xl">
-      <CardHeader className="pb-3 border-b border-gray-200 dark:border-gray-700">
-        <CardTitle className="flex items-center justify-between text-lg">
-          <div className="flex items-center space-x-2">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            >
-              <Globe className="h-5 w-5 text-wellness-blue-600" />
-            </motion.div>
-            <span className="text-gray-900 dark:text-white">{t('community.chat.title')}</span>
-          </div>
-          <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border-2 border-gray-100 dark:border-gray-700 overflow-hidden h-96 flex flex-col">
+      {/* Chat Header */}
+      <div className="bg-gradient-to-r from-wellness-blue-600 to-wellness-purple-600 px-4 py-3 text-white">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
             <motion.div 
-              className="w-2 h-2 bg-green-500 rounded-full"
-              animate={{ scale: [1, 1.2, 1] }}
+              className="relative"
+              animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
-            />
-            <Users className="h-4 w-4" />
-            <span>{onlineUsers} {t('chat.online')}</span>
+            >
+              <Users className="h-5 w-5" />
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border border-white"></div>
+            </motion.div>
+            <div>
+              <h3 className="font-semibold text-sm">European Study Hub</h3>
+              <p className="text-xs text-white/80">248 members online</p>
+            </div>
           </div>
-        </CardTitle>
-      </CardHeader>
-      
-      <CardContent className="flex-1 flex flex-col p-4">
-        {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto space-y-4 mb-4 scroll-smooth">
-          <AnimatePresence>
-            {messages.map((message) => (
-              <motion.div
-                key={message.id}
-                initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -20, scale: 0.8 }}
-                transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
-                className={`flex items-start space-x-3 group ${
-                  message.user === 'You' ? 'justify-end' : 'justify-start'
-                }`}
+          <div className="flex items-center space-x-2">
+            <Globe className="h-4 w-4" />
+            <span className="text-xs">Live</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Messages Container */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-gray-50/50 to-white dark:from-gray-800/50 dark:to-gray-800">
+        <AnimatePresence>
+          {messages.map((message) => (
+            <motion.div
+              key={message.id}
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              className="flex items-start space-x-3 group"
+            >
+              <motion.div 
+                className="relative flex-shrink-0"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2 }}
               >
-                {message.user !== 'You' && (
-                  <motion.div 
-                    className="flex-shrink-0"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-wellness-blue-500 to-wellness-green-500 flex items-center justify-center text-white text-lg font-medium shadow-lg">
-                      {message.avatar}
-                    </div>
-                  </motion.div>
+                <img
+                  src={message.avatar}
+                  alt={message.user}
+                  className="w-8 h-8 rounded-full object-cover border-2 border-wellness-blue-200 dark:border-wellness-blue-700"
+                />
+                {message.isOnline && (
+                  <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-gray-800"></div>
                 )}
+              </motion.div>
+              
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center space-x-2 mb-1">
+                  <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                    {message.user}
+                  </span>
+                  <span className="text-xs px-2 py-1 bg-wellness-blue-100 dark:bg-wellness-blue-900/30 text-wellness-blue-700 dark:text-wellness-blue-300 rounded-full">
+                    {message.country}
+                  </span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                    {message.time}
+                  </span>
+                </div>
                 
-                <div className={`max-w-xs lg:max-w-md ${
-                  message.user === 'You' ? 'order-first' : ''
-                }`}>
-                  <motion.div 
-                    className={`rounded-2xl px-4 py-3 shadow-md ${
-                      message.user === 'You' 
-                        ? 'bg-gradient-to-r from-wellness-blue-600 to-wellness-blue-700 text-white ml-auto' 
-                        : 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-600'
-                    }`}
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                <motion.div 
+                  className="bg-gray-100 dark:bg-gray-700 rounded-2xl rounded-tl-sm px-4 py-2 group-hover:shadow-md transition-shadow"
+                  whileHover={{ scale: 1.01 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <p className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
+                    {message.message}
+                  </p>
+                </motion.div>
+                
+                <div className="flex items-center space-x-4 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <motion.button
+                    onClick={() => handleLike(message.id)}
+                    className="flex items-center space-x-1 text-xs text-gray-500 dark:text-gray-400 hover:text-red-500 transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                   >
-                    {message.user !== 'You' && (
-                      <div className="text-xs font-medium mb-2 opacity-75 flex items-center justify-between">
-                        <span>{message.user} • {message.country}</span>
+                    <Heart className="h-3 w-3" />
+                    <span>{message.likes}</span>
+                  </motion.button>
+                  <button className="text-xs text-gray-500 dark:text-gray-400 hover:text-wellness-blue-600 transition-colors">
+                    Reply
+                  </button>
+                  <MoreHorizontal className="h-3 w-3 text-gray-400" />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+        
+        {/* Typing Indicator */}
+        <AnimatePresence>
+          {isTyping && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400"
+            >
+              <div className="flex space-x-1">
+                <motion.div
+                  className="w-2 h-2 bg-wellness-blue-500 rounded-full"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
+                />
+                <motion.div
+                  className="w-2 h-2 bg-wellness-blue-500 rounded-full"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
+                />
+                <motion.div
+                  className="w-2 h-2 bg-wellness-blue-500 rounded-full"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
+                />
+              </div>
+              <span>Someone is typing...</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        
+        <div ref={messagesEndRef} />
+      </div>
+
+      {/* Message Input */}
+      <div className="p-3 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex items-center space-x-3">
+          <div className="flex-1 relative">
+            <input
+              type="text"
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              onKeyPress={handleKeyPress}
+              placeholder="Type your message..."
+              className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-wellness-blue-500 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+            />
+            
+            {/* Emoji Picker */}
+            <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
+              <motion.button
+                onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                className="text-gray-400 hover:text-wellness-blue-600 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <Smile className="h-5 w-5" />
+              </motion.button>
+              
+              <AnimatePresence>
+                {showEmojiPicker && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9, y: 10 }}
+                    className="absolute bottom-full right-0 mb-2 bg-white dark:bg-gray-700 rounded-lg shadow-lg border border-gray-200 dark:border-gray-600 p-2"
+                  >
+                    <div className="grid grid-cols-4 gap-1">
+                      {emojis.map((emoji, index) => (
                         <motion.button
-                          whileHover={{ scale: 1.1 }}
+                          key={index}
+                          onClick={() => {
+                            setNewMessage(newMessage + emoji);
+                            setShowEmojiPicker(false);
+                          }}
+                          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-600 rounded text-lg"
+                          whileHover={{ scale: 1.2 }}
                           whileTap={{ scale: 0.9 }}
                         >
-                          <MoreHorizontal className="h-3 w-3 opacity-50 hover:opacity-100" />
+                          {emoji}
                         </motion.button>
-                      </div>
-                    )}
-                    <p className="text-sm leading-relaxed">{message.message}</p>
-                    <div className={`flex items-center justify-between mt-2 ${
-                      message.user === 'You' ? 'text-right' : 'text-left'
-                    }`}>
-                      <div className="text-xs opacity-75">
-                        {formatTime(message.timestamp)}
-                      </div>
-                      {message.user !== 'You' && (
-                        <div className="flex items-center space-x-2">
-                          <motion.button
-                            onClick={() => handleLikeMessage(message.id)}
-                            className={`flex items-center space-x-1 text-xs ${
-                              message.isLiked ? 'text-red-500' : 'text-gray-500 dark:text-gray-400'
-                            }`}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                          >
-                            <Heart className={`h-3 w-3 ${message.isLiked ? 'fill-current' : ''}`} />
-                            <span>{message.likes}</span>
-                          </motion.button>
-                          <motion.button
-                            className="text-xs text-gray-500 dark:text-gray-400 hover:text-wellness-blue-600"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                          >
-                            <ThumbsUp className="h-3 w-3" />
-                          </motion.button>
-                        </div>
-                      )}
-                    </div>
-                  </motion.div>
-                </div>
-                
-                {message.user === 'You' && (
-                  <motion.div 
-                    className="flex-shrink-0"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-wellness-green-500 to-wellness-blue-500 flex items-center justify-center text-white text-lg font-medium shadow-lg">
-                      🌍
+                      ))}
                     </div>
                   </motion.div>
                 )}
-              </motion.div>
-            ))}
-            
-            {/* Typing Indicator */}
-            {isTyping && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="flex items-center space-x-2 text-gray-500 dark:text-gray-400"
-              >
-                <div className="flex space-x-1">
-                  <motion.div
-                    className="w-2 h-2 bg-gray-400 rounded-full"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
-                  />
-                  <motion.div
-                    className="w-2 h-2 bg-gray-400 rounded-full"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
-                  />
-                  <motion.div
-                    className="w-2 h-2 bg-gray-400 rounded-full"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
-                  />
-                </div>
-                <span className="text-xs">Someone is typing...</span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-          <div ref={messagesEndRef} />
+              </AnimatePresence>
+            </div>
+          </div>
+          
+          <motion.button
+            onClick={handleSendMessage}
+            disabled={!newMessage.trim()}
+            className="bg-gradient-to-r from-wellness-blue-600 to-wellness-purple-600 text-white p-2 rounded-xl hover:from-wellness-blue-700 hover:to-wellness-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Send className="h-5 w-5" />
+          </motion.button>
         </div>
-
-        {/* Message Input */}
-        <motion.div 
-          className="flex space-x-2 p-2 bg-gray-50 dark:bg-gray-700 rounded-xl"
-          whileFocus={{ scale: 1.02 }}
-        >
-          <input
-            type="text"
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder={t('chat.placeholder')}
-            className="flex-1 px-4 py-3 border-none bg-transparent focus:outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 text-sm"
-          />
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button
-              onClick={handleSendMessage}
-              disabled={!newMessage.trim()}
-              size="sm"
-              className="bg-wellness-blue-600 hover:bg-wellness-blue-700 text-white px-4 py-3 rounded-lg"
-            >
-              <Send className="h-4 w-4" />
-            </Button>
-          </motion.div>
-        </motion.div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 

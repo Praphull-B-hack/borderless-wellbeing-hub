@@ -7,6 +7,8 @@ import FeaturesSection from '../components/FeaturesSection';
 import ServicesSection from '../components/ServicesSection';
 import CommunitySection from '../components/CommunitySection';
 import DashboardSection from '../components/DashboardSection';
+import TestimonialsSection from '../components/TestimonialsSection';
+import FAQSection from '../components/FAQSection';
 import StudentIdeasSection from '../components/StudentIdeasSection';
 import Footer from '../components/Footer';
 import AuthModal from '../components/AuthModal';
@@ -31,6 +33,8 @@ const Index = () => {
         <ServicesSection />
         <CommunitySection />
         <DashboardSection />
+        <TestimonialsSection />
+        <FAQSection />
         <StudentIdeasSection />
       </main>
 
