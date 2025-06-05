@@ -61,7 +61,7 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthClick }) => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="p-2 bg-wellness-blue-500 rounded-lg">
+            <div className="p-2 professional-gradient rounded-lg">
               <Heart className="h-6 w-6 text-white" />
             </div>
             <span className="text-xl font-bold font-poppins text-gray-900 dark:text-white">
@@ -76,7 +76,7 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthClick }) => {
                 <motion.button
                   key={link.href}
                   onClick={() => scrollToSection(link.href)}
-                  className="text-gray-700 dark:text-gray-300 hover:text-wellness-blue-600 dark:hover:text-wellness-blue-400 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors duration-200"
                   whileHover={{ y: -2 }}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -96,7 +96,7 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthClick }) => {
               <Button
                 variant="ghost"
                 onClick={() => onAuthClick('login')}
-                className="text-gray-700 dark:text-gray-300 hover:text-wellness-blue-600 dark:hover:text-wellness-blue-400"
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
               >
                 {t('nav.signIn')}
               </Button>
@@ -104,7 +104,7 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthClick }) => {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 onClick={() => onAuthClick('register')}
-                className="bg-wellness-blue-600 hover:bg-wellness-blue-700 text-white"
+                className="btn-professional"
               >
                 {t('nav.getStarted')}
               </Button>
@@ -116,7 +116,7 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthClick }) => {
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="bg-gray-50 dark:bg-gray-800 p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-wellness-blue-600 hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="bg-gray-50 dark:bg-gray-800 p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-700"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -133,12 +133,12 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthClick }) => {
               transition={{ duration: 0.3 }}
               className="md:hidden"
             >
-              <div className="px-2 pt-2 pb-3 space-y-1 bg-white dark:bg-gray-900 rounded-lg shadow-lg mt-2">
+              <div className="px-2 pt-2 pb-3 space-y-1 professional-card rounded-lg shadow-lg mt-2">
                 {navLinks.map((link, index) => (
                   <motion.button
                     key={link.href}
                     onClick={() => scrollToSection(link.href)}
-                    className="text-gray-700 dark:text-gray-300 hover:text-wellness-blue-600 dark:hover:text-wellness-blue-400 block px-3 py-2 text-base font-medium w-full text-left"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 block px-3 py-2 text-base font-medium w-full text-left"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -153,13 +153,13 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthClick }) => {
                   <Button
                     variant="ghost"
                     onClick={() => onAuthClick('login')}
-                    className="w-full justify-start text-gray-700 dark:text-gray-300 hover:text-wellness-blue-600"
+                    className="w-full justify-start text-gray-700 dark:text-gray-300 hover:text-blue-600"
                   >
                     {t('nav.signIn')}
                   </Button>
                   <Button
                     onClick={() => onAuthClick('register')}
-                    className="w-full bg-wellness-blue-600 hover:bg-wellness-blue-700 text-white"
+                    className="w-full btn-professional"
                   >
                     {t('nav.getStarted')}
                   </Button>

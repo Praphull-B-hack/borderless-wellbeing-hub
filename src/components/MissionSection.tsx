@@ -20,7 +20,13 @@ const MissionSection = () => {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl font-poppins mb-4">
             {t('mission.title')}
           </h2>
-          <div className="w-20 h-1 bg-wellness-blue-500 mx-auto mb-8"></div>
+          <motion.div 
+            className="w-20 h-1 professional-gradient mx-auto mb-8 rounded-full"
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          />
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
@@ -43,25 +49,25 @@ const MissionSection = () => {
                 icon: Globe,
                 title: 'Global Accessibility',
                 description: 'Breaking geographical barriers to provide universal access to wellness resources.',
-                color: 'wellness-blue'
+                gradient: 'from-blue-500 to-blue-600'
               },
               {
                 icon: Users,
                 title: 'Community Support',
                 description: 'Fostering meaningful connections and peer support across diverse communities.',
-                color: 'wellness-green'
+                gradient: 'from-green-500 to-green-600'
               },
               {
                 icon: Heart,
                 title: 'Holistic Wellness',
                 description: 'Addressing mental, physical, and emotional health through integrated approaches.',
-                color: 'red'
+                gradient: 'from-red-500 to-red-600'
               },
               {
                 icon: Shield,
                 title: 'Privacy & Trust',
                 description: 'Ensuring secure, confidential, and culturally sensitive healthcare delivery.',
-                color: 'purple'
+                gradient: 'from-purple-500 to-purple-600'
               }
             ].map((value, index) => (
               <motion.div 
@@ -74,11 +80,11 @@ const MissionSection = () => {
                 whileHover={{ y: -5 }}
               >
                 <motion.div 
-                  className={`w-16 h-16 bg-${value.color}-100 dark:bg-${value.color}-900 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-${value.color}-200 dark:group-hover:bg-${value.color}-800 transition-colors duration-300`}
+                  className={`w-16 h-16 bg-gradient-to-br ${value.gradient} rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-shadow duration-300`}
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <value.icon className={`h-8 w-8 text-${value.color}-600 dark:text-${value.color}-400`} />
+                  <value.icon className="h-8 w-8 text-white" />
                 </motion.div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{value.title}</h3>
                 <p className="text-gray-600 dark:text-gray-300">
