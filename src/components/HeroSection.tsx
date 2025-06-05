@@ -22,13 +22,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
   ];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center professional-gradient overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center hero-professional-gradient overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         {floatingIcons.map(({ icon: Icon, delay, x, y }, index) => (
           <motion.div
             key={index}
-            className="absolute opacity-10"
+            className="absolute opacity-20"
             initial={{ scale: 0, x: 0, y: 0, rotate: 0 }}
             animate={{ 
               scale: [0, 1, 1.2, 1],
@@ -48,7 +48,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
               top: `${15 + (index * 12)}%`
             }}
           >
-            <Icon size={40} className="text-white" />
+            <Icon size={40} className="text-white dark:text-blue-200" />
           </motion.div>
         ))}
       </div>
@@ -71,7 +71,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
             </motion.span>
             {" "}
             <motion.span
-              className="inline-block text-professional-gradient"
+              className="inline-block hero-text-gradient"
               initial={{ opacity: 0, x: 100, rotate: 180 }}
               animate={{ opacity: 1, x: 0, rotate: 0 }}
               transition={{ duration: 1, delay: 0.5, type: "spring", stiffness: 100 }}
@@ -81,7 +81,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
           </motion.h1>
 
           <motion.p 
-            className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-white/95 mb-8 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
@@ -102,7 +102,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
               <Button
                 onClick={onGetStarted}
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold rounded-xl shadow-lg transition-all duration-300"
+                className="hero-primary-button px-8 py-4 text-lg font-semibold rounded-xl shadow-lg transition-all duration-300"
               >
                 {t('hero.getStarted')}
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -116,7 +116,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold rounded-xl backdrop-blur-sm transition-all duration-300"
+                className="hero-secondary-button px-8 py-4 text-lg font-semibold rounded-xl backdrop-blur-sm transition-all duration-300"
               >
                 {t('hero.learnMore')}
               </Button>
@@ -137,21 +137,21 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                className="text-center professional-card p-6 rounded-xl"
+                className="text-center hero-stat-card p-6 rounded-xl"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.3 + index * 0.1 }}
                 whileHover={{ y: -5, scale: 1.02 }}
               >
                 <motion.div 
-                  className="text-3xl font-bold text-professional-gradient mb-2"
+                  className="text-3xl font-bold hero-stat-number mb-2"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.5, delay: 1.5 + index * 0.1, type: "spring" }}
                 >
                   {stat.number}
                 </motion.div>
-                <div className="text-gray-600 dark:text-gray-300 font-medium">{stat.label}</div>
+                <div className="text-gray-100 dark:text-gray-300 font-medium">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -166,12 +166,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
         transition={{ duration: 0.8, delay: 1.8 }}
       >
         <motion.div 
-          className="w-6 h-10 border-2 border-white rounded-full flex justify-center"
+          className="w-6 h-10 border-2 border-white/80 rounded-full flex justify-center"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
           <motion.div 
-            className="w-1 h-3 bg-white rounded-full mt-2"
+            className="w-1 h-3 bg-white/80 rounded-full mt-2"
             animate={{ opacity: [0, 1, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
