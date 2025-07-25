@@ -5,6 +5,9 @@ import HeroSection from '../components/HeroSection';
 import MissionSection from '../components/MissionSection';
 import FeaturesSection from '../components/FeaturesSection';
 import ServicesSection from '../components/ServicesSection';
+import AccessibilitySection from '../components/AccessibilitySection';
+import CulturalSection from '../components/CulturalSection';
+import CommunityConnectionSection from '../components/CommunityConnectionSection';
 import CommunitySection from '../components/CommunitySection';
 import DashboardSection from '../components/DashboardSection';
 import TestimonialsSection from '../components/TestimonialsSection';
@@ -29,6 +32,9 @@ const Index = () => {
       <main>
         <HeroSection onGetStarted={() => openAuthModal('register')} />
         <MissionSection />
+        <AccessibilitySection />
+        <CulturalSection />
+        <CommunityConnectionSection />
         <FeaturesSection />
         <ServicesSection />
         <CommunitySection />
