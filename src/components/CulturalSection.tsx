@@ -54,11 +54,12 @@ const CulturalSection = () => {
           viewport={{ once: true }}
         >
           <motion.h2 
-            className="text-3xl font-bold bg-gradient-to-r from-professional-purple-600 to-professional-green-600 bg-clip-text text-transparent sm:text-4xl font-poppins mb-4"
-            whileHover={{ scale: 1.02 }}
-          >
-            Cultural Understanding
-          </motion.h2>
+  className="text-3xl sm:text-4xl font-bold font-poppins mb-4 text-black dark:text-white bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
+  whileHover={{ scale: 1.02 }}
+>
+  Cultural Understanding
+</motion.h2>
+
           <motion.div 
             className="w-20 h-1 bg-gradient-to-r from-professional-purple-500 to-professional-green-500 mx-auto mb-8 rounded-full"
             initial={{ width: 0 }}
@@ -91,7 +92,7 @@ const CulturalSection = () => {
                       whileHover={{ scale: 1.15, rotate: 10 }}
                       transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
                     >
-                      <value.icon className="h-6 w-6" />
+                      <value.icon className="h-6 w-6 text-black dark:text-white" />
                     </motion.div>
                     <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-professional-green-600 dark:group-hover:text-professional-green-400 transition-colors">
                       {value.title}

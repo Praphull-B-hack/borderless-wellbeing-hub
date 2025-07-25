@@ -9,7 +9,7 @@ const AccessibilitySection = () => {
       icon: Globe,
       title: 'Universal Access',
       description: 'Breaking down geographical barriers to provide healthcare access regardless of your location or citizenship status.',
-      gradient: 'from-professional-purple-500 to-professional-blue-500'
+      gradient: 'from-professional-purple-500 to-professional-blue-600'
     },
     {
       icon: Languages,
@@ -54,7 +54,7 @@ const AccessibilitySection = () => {
           viewport={{ once: true }}
         >
           <motion.h2 
-            className="text-3xl font-bold bg-gradient-to-r from-professional-purple-600 to-professional-blue-600 bg-clip-text text-transparent sm:text-4xl font-poppins mb-4"
+            className="text-3xl font-bold bg-gradient-to-r from-professional-purple-600 to-professional-blue-600 bg-clip-text text-transparent sm:text-4xl font-poppins mb-4  from-green-400 to-blue-500"
             whileHover={{ scale: 1.02 }}
           >
             Access to Health Services
@@ -84,20 +84,21 @@ const AccessibilitySection = () => {
               className="card-hover"
             >
               <Card className="group hover:shadow-2xl transition-all duration-500 bg-white/80 dark:bg-gray-800/80 border-2 border-gray-200 dark:border-gray-700 h-full backdrop-blur-sm">
-                <CardHeader>
-                  <div className="flex items-center space-x-4">
-                    <motion.div 
-                      className={`p-3 rounded-xl bg-gradient-to-r ${feature.gradient} text-white shadow-lg`}
-                      whileHover={{ scale: 1.15, rotate: 10 }}
-                      transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
-                    >
-                      <feature.icon className="h-6 w-6" />
-                    </motion.div>
-                    <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-professional-purple-600 dark:group-hover:text-professional-purple-400 transition-colors">
-                      {feature.title}
-                    </CardTitle>
-                  </div>
-                </CardHeader>
+               <CardHeader>
+  <div className="flex items-center space-x-4">
+    <motion.div 
+      className={`p-3 rounded-xl bg-gradient-to-r ${feature.gradient} shadow-lg`}
+      whileHover={{ scale: 1.15, rotate: 10 }}
+      transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
+    >
+      <feature.icon className="h-6 w-6 text-black dark:text-white" />
+    </motion.div>
+    <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-professional-purple-600 dark:group-hover:text-professional-purple-400 transition-colors">
+      {feature.title}
+    </CardTitle>
+  </div>
+</CardHeader>
+
                 <CardContent>
                   <CardDescription className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                     {feature.description}
@@ -118,16 +119,16 @@ const AccessibilitySection = () => {
         >
           <div className="relative z-10">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-2">Breaking Barriers Worldwide</h3>
-              <p className="text-white/90">Our commitment to accessible healthcare reaches every corner of the globe</p>
+              <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">Breaking Barriers Worldwide</h3>
+              <p className="text-black/90 dark:bg-none dark:text-white">Our commitment to accessible healthcare reaches every corner of the globe</p>
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {[
-                { value: "195", label: "Countries Served", color: "text-blue-200" },
-                { value: "50+", label: "Languages Supported", color: "text-green-200" },
-                { value: "24/7", label: "Support Available", color: "text-purple-200" },
-                { value: "100%", label: "Accessibility Compliant", color: "text-orange-200" }
+                { value: "195", label: "Countries Served", color: "text-blue-400 ",},
+                { value: "50+", label: "Languages Supported", color: "text-green-400" },
+                { value: "24/7", label: "Support Available", color: "text-purple-400" },
+                { value: "100%", label: "Accessibility Compliant", color: "text-orange-400" }
               ].map((stat, index) => (
                 <motion.div
                   key={index}
@@ -138,7 +139,7 @@ const AccessibilitySection = () => {
                   whileHover={{ scale: 1.05 }}
                 >
                   <div className={`text-3xl font-bold ${stat.color} mb-1`}>{stat.value}</div>
-                  <div className="text-white/80">{stat.label}</div>
+                  <div className="text-black/80 dark:bg-none dark:text-white">{stat.label}</div>
                 </motion.div>
               ))}
             </div>

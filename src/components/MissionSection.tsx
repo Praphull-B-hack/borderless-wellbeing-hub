@@ -47,26 +47,26 @@ const MissionSection = () => {
             {[
               {
                 icon: Globe,
-                title: 'Global Accessibility',
-                description: 'Breaking geographical barriers to provide universal access to wellness resources.',
+                title: 'Cross-Border Care',
+                description: 'Removing geographical and systemic barriers to ensure everyone has access to mental and physical health support — no matter where they live.',
                 gradient: 'from-blue-500 to-blue-600'
               },
               {
                 icon: Users,
                 title: 'Community Support',
-                description: 'Fostering meaningful connections and peer support across diverse communities.',
-                gradient: 'from-green-500 to-green-600'
+                description: 'Creating safe, inclusive spaces for people to share experiences, support one another, and foster collective wellbeing across cultures and borders.',
+                gradient: 'from-green-400 to-green-800'
               },
               {
                 icon: Heart,
                 title: 'Holistic Wellness',
-                description: 'Addressing mental, physical, and emotional health through integrated approaches.',
+                description: 'Integrating mental, emotional, and physical care into one seamless experience — empowering people to care for their full selves.',
                 gradient: 'from-red-500 to-red-600'
               },
               {
                 icon: Shield,
                 title: 'Privacy & Trust',
-                description: 'Ensuring secure, confidential, and culturally sensitive healthcare delivery.',
+                description: 'Delivering care that is secure, private, and culturally respectful — protecting users rights while honoring their unique needs.',
                 gradient: 'from-purple-500 to-purple-600'
               }
             ].map((value, index) => (

@@ -104,7 +104,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
                 size="lg"
                 className="hero-primary-button px-8 py-4 text-lg font-semibold rounded-xl shadow-lg transition-all duration-300"
               >
-                {t('hero.getStarted')}
+                {t('GetStarted')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </motion.div>
@@ -131,9 +131,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
             transition={{ duration: 0.8, delay: 1.1 }}
           >
             {[
-              { number: "1M+", label: t('hero.stats.users') },
-              { number: "50+", label: t('hero.stats.countries') },
-              { number: "24/7", label: t('hero.stats.support') }
+              { number: "1M+", label: t('Users') },
+              { number: "50+", label: t('Countries') },
+              { number: "24/7", label: t('Support') }
             ].map((stat, index) => (
               <motion.div
                 key={index}

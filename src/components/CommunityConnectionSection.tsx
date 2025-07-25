@@ -54,11 +54,11 @@ const CommunityConnectionSection = () => {
           viewport={{ once: true }}
         >
           <motion.h2 
-            className="text-3xl font-bold bg-gradient-to-r from-professional-blue-600 to-professional-green-600 bg-clip-text text-transparent sm:text-4xl font-poppins mb-4"
+            className="text-3xl font-bold bg-gradient-to-r from-professional-blue-700 to-professional-green-600 bg-clip-text text-transparent sm:text-4xl font-poppins mb-4 from-green-400 to-blue-600"
             whileHover={{ scale: 1.02 }}
           >
             Community & Connection
-          </motion.h2>
+          </motion.h2> 
           <motion.div 
             className="w-20 h-1 bg-gradient-to-r from-professional-blue-500 to-professional-green-500 mx-auto mb-8 rounded-full"
             initial={{ width: 0 }}
@@ -91,7 +91,7 @@ const CommunityConnectionSection = () => {
                       whileHover={{ scale: 1.15, rotate: 10 }}
                       transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
                     >
-                      <feature.icon className="h-6 w-6" />
+                      <feature.icon className="h-6 w-6  text-black dark:text-white" />
                     </motion.div>
                     <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-professional-blue-600 dark:group-hover:text-professional-blue-400 transition-colors">
                       {feature.title}
@@ -118,16 +118,16 @@ const CommunityConnectionSection = () => {
         >
           <div className="relative z-10">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-2">Building Stronger Communities</h3>
-              <p className="text-white/90">Our platform fosters connections that create lasting positive impact</p>
+              <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">Building Stronger Communities</h3>
+              <p className="text-black/90 dark:text-white">Our platform fosters connections that create lasting positive impact</p>
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {[
-                { value: "500K+", label: "Active Community Members", color: "text-blue-200" },
-                { value: "1M+", label: "Support Messages Sent", color: "text-green-200" },
-                { value: "10K+", label: "Support Groups Created", color: "text-purple-200" },
-                { value: "95%", label: "Feel More Connected", color: "text-orange-200" }
+                { value: "500K+", label: "Active Community Members", color: "text-blue-400" },
+                { value: "1M+", label: "Support Messages Sent", color: "text-green-400" },
+                { value: "10K+", label: "Support Groups Created", color: "text-purple-400" },
+                { value: "95%", label: "Feel More Connected", color: "text-orange-400" }
               ].map((stat, index) => (
                 <motion.div
                   key={index}
@@ -138,7 +138,7 @@ const CommunityConnectionSection = () => {
                   whileHover={{ scale: 1.05 }}
                 >
                   <div className={`text-3xl font-bold ${stat.color} mb-1`}>{stat.value}</div>
-                  <div className="text-white/80">{stat.label}</div>
+                  <div className="text-black dark:text-white">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -161,20 +161,22 @@ const CommunityConnectionSection = () => {
               Be part of a supportive network that transcends borders, cultures, and backgrounds. Together, we're building a healthier world.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button 
-                className="bg-gradient-to-r from-professional-blue-600 to-professional-green-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Join Community
-              </motion.button>
-              <motion.button 
-                className="border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-3 rounded-xl font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Explore Groups
-              </motion.button>
+               <motion.button 
+  className="bg-gradient-to-r from-blue-700 to-green-600 text-white px-8 py-3 rounded-xl font-semibold border border-blue-800/40 dark:border-none shadow-md hover:shadow-lg transition-all duration-300"
+  whileHover={{ scale: 1.05, y: -2 }}
+  whileTap={{ scale: 0.95 }}
+>
+  Join Community
+</motion.button>
+
+             <motion.button 
+  className="bg-gradient-to-r from-blue-700 to-green-600 text-white px-8 py-3 rounded-xl font-semibold border border-blue-800/40 dark:border-none shadow-md hover:shadow-lg transition-all duration-300"
+  whileHover={{ scale: 1.05, y: -2 }}
+  whileTap={{ scale: 0.95 }}
+>
+  Explore groups
+</motion.button>
+
             </div>
           </div>
         </motion.div>
