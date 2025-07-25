@@ -12,15 +12,13 @@ import { useLanguage, Language } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 
 const languages: { code: Language; name: string; nativeName: string }[] = [
+
   { code: 'en', name: 'English', nativeName: 'English' },
   { code: 'es', name: 'Spanish', nativeName: 'Español' },
   { code: 'fr', name: 'French', nativeName: 'Français' },
   { code: 'de', name: 'German', nativeName: 'Deutsch' },
-  { code: 'it', name: 'Italian', nativeName: 'Italiano' },
   { code: 'pt', name: 'Portuguese', nativeName: 'Português' },
-  { code: 'nl', name: 'Dutch', nativeName: 'Nederlands' },
   { code: 'sv', name: 'Swedish', nativeName: 'Svenska' },
-  { code: 'da', name: 'Danish', nativeName: 'Dansk' },
   { code: 'no', name: 'Norwegian', nativeName: 'Norsk' },
   { code: 'fi', name: 'Finnish', nativeName: 'Suomi' },
   { code: 'pl', name: 'Polish', nativeName: 'Polski' },

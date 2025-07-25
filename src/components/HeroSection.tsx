@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowRight, Globe, Users, Heart, BookOpen, MessageSquare, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';

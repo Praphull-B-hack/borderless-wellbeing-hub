@@ -162,7 +162,7 @@ const CommunityConnectionSection = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                <motion.button 
-  className="bg-gradient-to-r from-blue-700 to-green-600 text-white px-8 py-3 rounded-xl font-semibold border border-blue-800/40 dark:border-none shadow-md hover:shadow-lg transition-all duration-300"
+  className=" bg-white text-wellness-purple-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors shadow-lg"
   whileHover={{ scale: 1.05, y: -2 }}
   whileTap={{ scale: 0.95 }}
 >
@@ -170,7 +170,7 @@ const CommunityConnectionSection = () => {
 </motion.button>
 
              <motion.button 
-  className="bg-gradient-to-r from-blue-700 to-green-600 text-white px-8 py-3 rounded-xl font-semibold border border-blue-800/40 dark:border-none shadow-md hover:shadow-lg transition-all duration-300"
+  className="bg-white text-wellness-purple-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors shadow-lg"
   whileHover={{ scale: 1.05, y: -2 }}
   whileTap={{ scale: 0.95 }}
 >

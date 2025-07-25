@@ -89,10 +89,10 @@ const CommunityChat = () => {
     setTimeout(() => {
       setIsTyping(false);
       const responses = [
-        "That sounds like a great project! Count me in! 🙌",
-        "I'd love to join the study session. What time works for everyone?",
-        "Has anyone tried the new language exchange feature? It's amazing!",
-        "Looking for a study buddy for calculus. Anyone interested? 📐"
+       "That sounds like a great wellness initiative! Count me in!",
+"I'd love to join the support session. What time works for everyone?",
+"Has anyone tried the new mental health check-in tool? It's amazing!",
+"Looking for an accountability partner for my fitness recovery plan. Anyone interested?"
       ];
       const randomResponse = responses[Math.floor(Math.random() * responses.length)];
       const newMsg = {
@@ -134,7 +134,7 @@ const CommunityChat = () => {
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border border-white"></div>
             </motion.div>
             <div>
-              <h3 className="font-semibold text-sm">European Study Hub</h3>
+              <h3 className="font-semibold text-sm">European Medical Hub</h3>
               <p className="text-xs text-white/80">248 members online</p>
             </div>
           </div>
