@@ -1,14 +1,23 @@
 import React from 'react';
-import { ArrowRight, Globe, Users, Heart, BookOpen, MessageSquare, Lightbulb } from 'lucide-react';
+import {
+  ArrowRight, Globe, Users, Heart, BookOpen,
+  MessageSquare, Lightbulb, Scale, MessageCircle
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu, DropdownMenuItem, DropdownMenuPortal,
+  DropdownMenuTrigger, DropdownMenuContent
+} from './ui/dropdown-menu';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface HeroSectionProps {
   onGetStarted: () => void;
+  onDemoClick: () => void;
+  onAiClick: () => void;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onDemoClick, onAiClick }) => {
   const { t } = useLanguage();
 
   const floatingIcons = [
@@ -25,7 +34,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
       id="home"
       className="relative min-h-screen flex items-center justify-center bg-[#f2e8dc] text-black overflow-hidden dark:bg-[#1f2937] dark:text-gray-300"
     >
-      {/* Animated background elements */}
+      {/* Animated Icons */}
       <div className="absolute inset-0 overflow-hidden">
         {floatingIcons.map(({ icon: Icon, delay, x, y }, index) => (
           <motion.div
@@ -50,21 +59,19 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
               top: `${15 + index * 12}%`,
             }}
           >
-            <Icon
-              size={40}
-              className="text-black/30 dark:text-white/30"
-            />
+            <Icon size={40} className="text-black/30 dark:text-white/30" />
           </motion.div>
         ))}
       </div>
 
+      {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Main heading */}
+          <div className="pt-16" />
           <motion.h1 className="text-4xl md:text-6xl font-extrabold mb-6 font-poppins">
             <motion.span
               className="inline-block text-black dark:text-gray-100"
@@ -93,6 +100,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
             {t('hero.subtitle')}
           </motion.p>
 
+          {/* Buttons */}
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             initial={{ opacity: 0, y: 30 }}
@@ -105,22 +113,53 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
                 size="lg"
                 className="bg-[#487f7b] text-white px-8 py-4 text-lg font-semibold rounded-md shadow-md transition-all duration-300 hover:bg-[#3a6a68] dark:bg-teal-500 dark:hover:bg-teal-600"
               >
-                {t('GetStarted')}
+                {t('nav.getStarted')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </motion.div>
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border border-[#487f7b] text-[#487f7b] px-8 py-4 text-lg font-semibold rounded-md transition-all duration-300 hover:bg-[#487f7b]/10 dark:border-teal-400 dark:text-teal-400 dark:hover:bg-teal-400/20"
-              >
-                {t('hero.learnMore')}
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border border-[#487f7b] text-[#487f7b] px-8 py-4 text-lg font-semibold rounded-md transition-all duration-300 hover:bg-[#487f7b]/10 dark:border-teal-400 dark:text-teal-400 dark:hover:bg-teal-400/20"
+                  >
+                    {t('hero.learnMore')}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuContent sideOffset={5}>
+                    <DropdownMenuItem
+                      className="hover:bg-transparent hover:text-inherit focus:bg-transparent focus:text-inherit"
+                    >
+                      <Button
+                        onClick={onDemoClick}
+                        className="bg-transparent hover:bg-transparent text-[#487f7b] dark:text-teal-400 hover:text-[#487f7b] dark:hover:text-teal-400"
+                      >
+                        AI Compare
+                        <Scale className="ml-2" />
+                      </Button>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      className="hover:bg-transparent hover:text-inherit focus:bg-transparent focus:text-inherit"
+                    >
+                      <Button
+                        onClick={onAiClick}
+                        className="bg-transparent hover:bg-transparent text-[#487f7b] dark:text-teal-400 hover:text-[#487f7b] dark:hover:text-teal-400"
+                      >
+                        AI Chat
+                        <MessageCircle className="ml-2" />
+                      </Button>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenuPortal>
+              </DropdownMenu>
             </motion.div>
           </motion.div>
 
+          {/* Stats */}
           <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 50 }}
@@ -148,7 +187,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
                 >
                   {stat.number}
                 </motion.div>
-                <div className="text-gray-700 font-medium dark:text-gray-300">{stat.label}</div>
+                <div className="text-gray-700 font-medium dark:text-gray-300">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </motion.div>
