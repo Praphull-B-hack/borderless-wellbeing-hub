@@ -19,7 +19,7 @@ const Footer = () => {
                 className="h-full w-auto object-contain"
               />
             </div>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 ms-20">
               <a href="#" className="text-[#5C8C85] hover:text-[#D1835A] transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
@@ -66,20 +66,32 @@ const Footer = () => {
           {/* Contact & Language */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-[#5C8C85]">Contact Us</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Mail className="h-4 w-4 text-[#D1835A]" />
-                <span>hello@borderlesswellbeing.com</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="h-4 w-4 text-[#D1835A]" />
-                <span>+1 (555) 123-4567</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-4 w-4 text-[#D1835A]" />
-                <span>Global Headquarters</span>
-              </div>
-            </div>
+           <div className="space-y-3">
+  {/* Email */}
+  <div className="flex items-center space-x-3">
+    <Mail className="h-4 w-4 text-[#D1835A]" />
+    <a
+      href="mailto:hello@borderlesswellbeing.com"
+      className="text-[#5E8E87] hover:text-[#D1835A]"
+    >
+      hello@borderlesswellbeing.com
+    </a>
+  </div>
+
+  {/* Phone */}
+  <div className="flex items-center space-x-3">
+    <Phone className="h-4 w-4 text-[#D1835A]" />
+    <a href="tel:+15551234567" className="text-[#5E8E87] hover:text-[#D1835A]">
+      +1 (555) 123-4567
+    </a>
+  </div>
+
+  {/* Location (static) */}
+  <div className="flex items-center space-x-3">
+    <MapPin className="h-4 w-4 text-[#D1835A]" />
+    <span className="text-[#5E8E87] hover:text-[#D1835A]">Global Headquarters</span>
+  </div>
+</div>
 
             <div className="pt-4">
               <h4 className="text-sm font-semibold mb-2 text-[#5C8C85]">Language</h4>

@@ -53,35 +53,38 @@ const DashboardSection = () => {
 
           {/* Quick Actions */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            {[
-              { icon: Activity, label: 'Health Tracker', color: '#4BAF94' },
-              { icon: Calendar, label: 'Wellness Metrics', color: '#9FBC56' },
-              { icon: Users, label: 'Join Community', color: '#AC7BB6' },
-              { icon: Bell, label: 'Notifications', color: '#D1835A' }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="bg-white dark:bg-gray-800 transition-all duration-300 cursor-pointer">
-                  <CardContent className="p-6 text-center">
-                    <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
-                      style={{
-                        background: `linear-gradient(to right, ${item.color}, ${item.color})`
-                      }}
-                    >
-                      <item.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <p className="font-medium text-[#0D121C] dark:text-white">{item.label}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+  {[
+    { icon: Activity, label: 'Health Tracker', color: '#4BAF94' },
+    { icon: Calendar, label: 'Wellness Metrics', color: '#9FBC56' },
+    { icon: Users, label: 'Join Community', color: '#AC7BB6' },
+    { icon: Bell, label: 'Notifications', color: '#D1835A' }
+  ].map((item, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      whileHover={{ scale: 1.03 }}
+    >
+      <Card className="bg-white dark:bg-gray-800 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg dark:hover:shadow-xl hover:-translate-y-1 cursor-pointer">
+
+        <CardContent className="p-6 text-center">
+          <div
+            className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 transition-transform duration-300 group-hover:scale-110"
+            style={{
+              background: `linear-gradient(to right, ${item.color}, ${item.color})`
+            }}
+          >
+            <item.icon className="h-6 w-6 text-white" />
           </div>
+          <p className="font-medium text-[#0D121C] dark:text-white">{item.label}</p>
+        </CardContent>
+      </Card>
+    </motion.div>
+  ))}
+</div>
+
 
           {/* Dashboard Cards */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -92,29 +95,45 @@ const DashboardSection = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-[#F8FBFA] dark:bg-[#1F2E2B]">
-                <CardHeader className="pb-2">
+  <Card className="bg-[#F8FBFA] dark:bg-[#1F2E2B] transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg dark:hover:shadow-xl hover:-translate-y-1 cursor-pointer">
+
+                <CardHeader className="pb-2 -mb-2">
                   <CardTitle className="text-lg text-[#0D121C] dark:text-white flex items-center">
                     <Heart className="h-5 w-5 text-red-500 mr-2" />
                     Wellness Metrics
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600 dark:text-gray-300">Active Self-Care Time</span>
-                      <span className="font-semibold text-[#0D121C] dark:text-white">6.5 hours this week</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600 dark:text-gray-300">Ongoing Care Plans</span>
-                      <span className="font-semibold text-[#0D121C] dark:text-white">4 programs</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600 dark:text-gray-300">Healthy Habit Streak</span>
-                      <span className="font-semibold text-[#4BAF94] dark:text-[#4BAF94]">🔥 12 days of consistency</span>
-                    </div>
-                  </div>
-                </CardContent>
+            <CardContent>
+  <div className="space-y-4">
+    {[
+      {
+        label: 'Active Self-Care Time',
+        value: '6.5 hours this week',
+        valueColor: 'text-[#0D121C] dark:text-white',
+      },
+      {
+        label: 'Ongoing Care Plans',
+        value: '4 programs',
+        valueColor: 'text-[#0D121C] dark:text-white',
+      },
+      {
+        label: 'Healthy Habit Streak',
+        value: '🔥 12 days of consistency',
+        valueColor: 'text-[#4BAF94] dark:text-[#4BAF94]',
+      },
+    ].map(({ label, value, valueColor }, index) => (
+      <div
+        key={index}
+        className="flex justify-between items-center gap-4"
+      >
+        <span className="text-gray-600 dark:text-gray-300 min-w-[180px]">{label}</span>
+        <span className={`font-semibold text-right ${valueColor}`}>{value}</span>
+      </div>
+    ))}
+  </div>
+</CardContent>
+
+
               </Card>
             </motion.div>
 
@@ -125,7 +144,8 @@ const DashboardSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-[#F9F7FB] dark:bg-[#2A2533]">
+              <Card className="bg-[#F9F7FB] dark:bg-[#2A2533] transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg dark:hover:shadow-xl hover:-translate-y-1 cursor-pointer">
+
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg text-[#0D121C] dark:text-white flex items-center">
                     <TrendingUp className="h-5 w-5 text-[#AC7BB6] mr-2" />
@@ -133,9 +153,10 @@ const DashboardSection = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-4 mb-4">
                     {[
-                      { label: 'Nutrition', percent: 85, from: '#4BAF94', to: '#AC7BB6' },
+                      { label: 'Stress', percent: 28, from: '#4BAF91', to: '#AC7BB6' },
+                      { label: 'Nutrition', percent: 87, from: '#9FBC56', to: '#4BAF94' },
                       { label: 'Recovery', percent: 72, from: '#9FBC56', to: '#4BAF94' }
                     ].map((item, i) => (
                       <div key={i}>
@@ -169,10 +190,11 @@ const DashboardSection = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-[#F3FAF6] dark:bg-[#24322C]">
+              <Card className="bg-[#F3FAF6] dark:bg-[#24322C] transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg dark:hover:shadow-xl hover:-translate-y-1 cursor-pointer">
+
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg text-[#0D121C] dark:text-white flex items-center">
-                    <Calendar className="h-5 w-5 text-[#9FBC56] mr-2" />
+                    <Calendar className="h-5 w-5 text-[#9FBC56] mr-2 mb-4" />
                     Upcoming Appointments
                   </CardTitle>
                 </CardHeader>
@@ -180,8 +202,8 @@ const DashboardSection = () => {
                   <div className="space-y-3">
                     {[
                       { color: '#4BAF94', title: 'Virtual Therapy Session', time: 'Today, 3:00 PM' },
-                      { color: '#9FBC56', title: 'Nutrition Workshop', time: 'Tomorrow, 7:00 AM' },
-                      { color: '#AC7BB6', title: 'Physiotherapy Review', time: 'Friday, 6:00 PM' }
+                      { color: '#9FBC56', title: 'Nutrition Workshop', time: 'Tomorrow, 7:00 AM' }
+                      
                     ].map((event, idx) => (
                       <div key={idx} className="flex items-center space-x-3">
                         <div className="w-2 h-2 rounded-full" style={{ backgroundColor: event.color }}></div>

@@ -46,7 +46,7 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthClick, onDemoClick, onAiC
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="h-10">
+            <div className="h-16">
   <img
     src="/logo.png"
     alt="Well-Bridge Logo"

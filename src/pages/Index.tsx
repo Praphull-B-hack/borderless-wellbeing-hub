@@ -47,6 +47,7 @@ const Index = () => {
         <ServicesSection />
         <DashboardSection />
         <CommunitySection />
+        {/* <StudentIdeasSection/> */}
       </main>
 
       {/* Floating Ai Chat button
