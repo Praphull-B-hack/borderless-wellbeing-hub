@@ -77,7 +77,8 @@ const StudentIdeasSection = () => {
             variants={itemVariants}
             className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
           >
-           Have a brilliant idea to improve cross-border healthcare or digital wellness? We want to hear from you! Share your insights and help us build a more connected, accessible, and patient-centered health platform.
+            Have a brilliant idea to improve European education collaboration? We want to hear from you! 
+            Share your thoughts and help us build a better learning community together.
           </motion.p>
         </motion.div>
 
@@ -150,11 +151,11 @@ const StudentIdeasSection = () => {
                         className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-wellness-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                       >
                         <option value="general">General Improvement</option>
-                        <option value="features">Patient Experiences</option>
-                        <option value="collaboration">Mental Health Tools</option>
-                        <option value="language">Cross-Border Access</option>
+                        <option value="features">New Features</option>
+                        <option value="collaboration">Collaboration Tools</option>
+                        <option value="language">Language Exchange</option>
                         <option value="events">Events & Activities</option>
-                        <option value="technical">Wellness & Prevention</option>
+                        <option value="technical">Technical Issues</option>
                       </select>
                     </motion.div>
 
@@ -170,7 +171,7 @@ const StudentIdeasSection = () => {
                         required
                         rows={6}
                         className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-wellness-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all resize-none"
-                        placeholder="Share your idea in detail. What health challenge does it solve? How could it make care more accessible, inclusive, or effective?"
+                        placeholder="Share your idea in detail. How would it improve the platform? What problem does it solve? Be as specific as possible..."
                       />
                     </motion.div>
 
@@ -227,18 +228,18 @@ const StudentIdeasSection = () => {
                 {[
                   {
                     icon: <Users className="h-6 w-6 text-wellness-blue-600" />,
-                    title: "Patient-Led Innovation",
-                    description: "Our platform evolves based on real experiences and feedback from patients, caregivers, and wellness users."
+                    title: "Student-Driven Innovation",
+                    description: "Our platform evolves based on real student needs and experiences."
                   },
                   {
                     icon: <Globe className="h-6 w-6 text-wellness-green-600" />,
-                    title: "Culturally Aware Care",
-                    description: "Ideas from diverse communities across Europe help us create inclusive, culturally respectful health solutions."
+                    title: "Cross-Cultural Perspectives",
+                    description: "Ideas from students across Europe help us build truly inclusive features."
                   },
                   {
                     icon: <Lightbulb className="h-6 w-6 text-wellness-blue-600" />,
-                    title: "Fast-Tracked Features",
-                    description: "Strong ideas are quickly integrated into our development roadmap and tested with real users."
+                    title: "Rapid Implementation",
+                    description: "Great ideas are fast-tracked into our development roadmap."
                   }
                 ].map((item, index) => (
                   <motion.div
@@ -269,11 +270,11 @@ const StudentIdeasSection = () => {
             >
               <h4 className="text-xl font-bold mb-2">Join Our Beta Program</h4>
               <p className="text-blue-100 mb-4">
-               Be among the first to test new tools and features — and help shape the future of European healthcare collaboration.
+                Get early access to new features and help shape the future of European education collaboration.
               </p>
               <Button
                 variant="outline"
-                className="text-black border-white hover:bg-white hover:text-wellness-blue-600 dark:text-white"
+                className="text-white border-white hover:bg-white hover:text-wellness-blue-600"
               >
                 Learn More
               </Button>

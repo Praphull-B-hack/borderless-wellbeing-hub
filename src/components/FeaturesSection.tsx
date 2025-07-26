@@ -11,37 +11,38 @@ const FeaturesSection = () => {
   const features = [
     {
       icon: Brain,
-      title: 'Cross-border Medical Support',
-      description: 'Connect with licensed healthcare professionals from across Europe. Receive medical advice, second opinions, and care tailored to your language and cultural background.',
+      title: 'Cross-border Educational Support',
+      description: 'Connect with educators and mentors from around Europe. Get academic support in your preferred language and cultural context.',
       color: 'bg-gradient-to-r from-wellness-purple-500 to-wellness-blue-500',
       bgColor: 'bg-gradient-to-br from-wellness-purple-50 to-wellness-blue-50 dark:from-wellness-purple-900/20 dark:to-wellness-blue-900/20',
       borderColor: 'border-wellness-purple-200 dark:border-wellness-purple-700'
     },
     {
       icon: Activity,
-      title: 'Health Monitoring & Progress Tracking',
-      description: 'Track your symptoms, treatment plans, and recovery progress. Access personalized health recommendations created by medical experts from across the continent.',
+      title: 'Learning Progress Tracking',
+      description: 'Track your academic progress, monitor study habits, and access personalized learning programs designed by European education experts.',
       color: 'bg-gradient-to-r from-wellness-green-500 to-wellness-blue-500',
       bgColor: 'bg-gradient-to-br from-wellness-green-50 to-wellness-blue-50 dark:from-wellness-green-900/20 dark:to-wellness-blue-900/20',
       borderColor: 'border-wellness-green-200 dark:border-wellness-green-700'
     },
     {
       icon: Video,
-      title: 'Virtual Consultations & Remote Care',
-      description: 'Book and attend video appointments with doctors, therapists, and specialists—no matter where you are. Get care without borders.',
+      title: 'Virtual Study Sessions & Remote Learning',
+      description: 'Join video study sessions with students and educators worldwide. Access educational content regardless of your location.',
       color: 'bg-gradient-to-r from-wellness-pink-500 to-wellness-purple-500',
       bgColor: 'bg-gradient-to-br from-wellness-pink-50 to-wellness-purple-50 dark:from-wellness-pink-900/20 dark:to-wellness-purple-900/20',
       borderColor: 'border-wellness-pink-200 dark:border-wellness-pink-700'
     },
     {
       icon: Users,
-      title: 'Patient Communities & Support Circles',
-      description: 'Join patient groups based on health conditions, experiences, or treatment paths. Share your journey, find encouragement, and connect with others navigating similar challenges.',
+      title: 'Student Communities & Study Circles',
+      description: 'Join supportive learning communities based on shared subjects, interests, or academic goals. Find your study tribe across Europe.',
       color: 'bg-gradient-to-r from-wellness-orange-500 to-wellness-pink-500',
       bgColor: 'bg-gradient-to-br from-wellness-orange-50 to-wellness-pink-50 dark:from-wellness-orange-900/20 dark:to-wellness-pink-900/20',
       borderColor: 'border-wellness-orange-200 dark:border-wellness-orange-700'
     }
   ];
+
   return (
     <section id="features" className="py-20 bg-gradient-to-br from-white via-purple-50/30 to-blue-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -116,15 +117,15 @@ const FeaturesSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="bg-gradient-to-br from-white via-blue-50/50 to-green-50/50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 rounded-2xl shadow-xl p-8 max-w-4xl mx-auto border-2 border-gray-200 dark:border-gray-700">
+          <div className="bg-gradient-to-r from-wellness-purple-600 via-wellness-blue-600 to-wellness-green-600 rounded-2xl shadow-2xl p-8 max-w-4xl mx-auto text-white relative overflow-hidden">
             {/* Background decorations */}
-            <div className="absolute inset-0 text-black "></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-wellness-purple-600/90 via-wellness-blue-600/90 to-wellness-green-600/90"></div>
             <div className="relative z-10">
               <h3 className="text-2xl font-bold mb-4">
-                Ready to Experience Borderless Healthcare?
+                Ready to Experience Borderless Learning?
               </h3>
-              <p className="text-black/90 mb-6">
-               Join thousands of patients who have already improved their health journey with our cross-border European medical platform.
+              <p className="text-white/90 mb-6">
+                Join thousands of students who have already transformed their educational journey with our European platform.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.button 
@@ -135,9 +136,9 @@ const FeaturesSection = () => {
                   Start Free Trial
                 </motion.button>
                 <motion.button 
-                 className="bg-white text-wellness-purple-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors shadow-lg"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
+                  className="border-2 border-white/30 text-white px-8 py-3 rounded-xl font-semibold hover:bg-white/20 backdrop-blur-md transition-colors"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   View Demo
                 </motion.button>

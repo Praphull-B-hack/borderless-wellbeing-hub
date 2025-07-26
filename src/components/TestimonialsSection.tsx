@@ -8,57 +8,57 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       name: "Maria González",
-      role: "Patient Living with Type 1 Diabetes",
+      role: "Computer Science Student",
       country: "Spain",
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=100&h=100&fit=crop&crop=face",
-      content: "Borderless Health completely changed how I manage my chronic condition. I connect with specialists from across Europe and track my treatment through one platform.",
+      content: "Borderless Learning transformed my academic journey. I connected with students from 15 different countries and improved my programming skills through collaborative projects.",
       rating: 5,
-      course: "Chronic Care Support Program"
+      course: "International Computer Science Program"
     },
     {
       name: "Hans Mueller",
-      role: "Mental Health Advocate",
+      role: "Language Exchange Coordinator",
       country: "Germany",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-      content: "The multilingual support network is incredible. I've received therapy in my native German while practicing English and French with peers in the wellness community.",
+      content: "The language exchange platform is incredible. I've helped over 200 students learn German while improving my English and French. The community is so supportive!",
       rating: 5,
-      course: "Cross-Cultural Mental Health Program"
+      course: "Multilingual Communication Studies"
     },
     {
       name: "Sophie Dubois",
-      role: "Long COVID Patient ",
+      role: "Research Assistant",
       country: "France",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
-      content: "I'm part of a support group for people affected by long COVID, with members from eight countries. The tools and community have helped me feel less alone.",
+      content: "The research collaboration tools are outstanding. I'm working on a European history project with students from 8 countries. This platform breaks down all barriers.",
       rating: 5,
-      course: "Post-COVID Recovery Network"
+      course: "European History & Culture"
     },
     {
       name: "Alessandro Rossi",
-      role: "Rehabilitation Patient",
+      role: "Medical Student",
       country: "Italy",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
-      content: "Accessing medical advice and attending virtual rehab sessions while living abroad has been a game-changer. I no longer feel limited by location.",
+      content: "Studying medicine across borders has never been easier. The virtual study sessions and access to international medical resources have been game-changing.",
       rating: 5,
-      course: "Cross-Border Medical Access Program"
+      course: "International Medical Studies"
     },
     {
       name: "Anna Kowalski",
-      role: "Patient Advisor & Innovator",
+      role: "Business Student",
       country: "Poland",
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
-      content: "I joined a digital health startup group through the platform. As a patient with lived experience, I now help co-design better tools with professionals across Europe.",
+      content: "The business networking opportunities are amazing. I've connected with future entrepreneurs from all over Europe and we're planning to start a company together!",
       rating: 5,
-      course: "Digital Health Co-Creation Lab"
+      course: "European Business Management"
     },
     {
       name: "Erik Nilsson",
-      role: "Heart Health Patient",
+      role: "Engineering Student",
       country: "Sweden",
       image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
-      content: "Living with a heart condition, I now use remote monitoring devices and share data with doctors in Sweden, Germany, and Lithuania. It's real-time and life-saving.",
+      content: "The engineering collaboration tools are top-notch. Working on sustainable energy projects with international teams has broadened my perspective immensely.",
       rating: 5,
-      course: "Remote Cardiac Care Program"
+      course: "Sustainable Engineering"
     }
   ];
 
@@ -99,7 +99,7 @@ const TestimonialsSection = () => {
             className="text-4xl font-bold bg-gradient-to-r from-wellness-purple-600 to-wellness-blue-600 bg-clip-text text-transparent font-poppins mb-4"
             whileHover={{ scale: 1.02 }}
           >
-            Healthcare Impact Stories
+            Student Success Stories
           </motion.h2>
           <motion.div 
             className="w-24 h-1 bg-gradient-to-r from-wellness-purple-500 to-wellness-blue-500 mx-auto mb-6 rounded-full"
@@ -109,7 +109,7 @@ const TestimonialsSection = () => {
             viewport={{ once: true }}
           />
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Discover how medical students and professionals across Europe are transforming healthcare and collaboration through our cross-border platform.
+            Discover how students across Europe are transforming their educational journey through our collaborative platform
           </p>
         </motion.div>
 
@@ -204,16 +204,16 @@ const TestimonialsSection = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-wellness-blue-600/90 via-wellness-purple-600/90 to-wellness-pink-600/90"></div>
           <div className="relative z-10">
             <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold mb-2">Trusted by Patients Across Europe</h3>
-              <p className="text-white/90">Join thousands of individuals who are transforming their health journeys through accessible, cross-border care.</p>
+              <h3 className="text-3xl font-bold mb-2">Trusted by Students Worldwide</h3>
+              <p className="text-white/90">Join thousands of students who have transformed their education</p>
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {[
-                { value: "50,000+", label: "Active Patients & Wellness Users" },
+                { value: "50,000+", label: "Active Students" },
                 { value: "98%", label: "Satisfaction Rate" },
-                { value: "120+", label: "Countries Served" },
-                { value: "500+", label: "Partner Clinics & Healthcare Institutions" }
+                { value: "120+", label: "Countries" },
+                { value: "500+", label: "Universities" }
               ].map((stat, index) => (
                 <motion.div 
                   key={index}

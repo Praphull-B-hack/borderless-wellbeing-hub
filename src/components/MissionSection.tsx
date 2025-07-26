@@ -21,12 +21,12 @@ const MissionSection = () => {
             {t('mission.title')}
           </h2>
           <motion.div 
-            className="w-20 h-1 professional-gradient mx-auto mb-8 rounded-full"
-            initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          />
+  className="w-20 h-1 bg-[#D1835A] mx-auto mb-8 rounded-full"
+  initial={{ width: 0 }}
+  whileInView={{ width: 80 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+  viewport={{ once: true }}
+/>
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
@@ -80,7 +80,7 @@ const MissionSection = () => {
                 whileHover={{ y: -5 }}
               >
                 <motion.div 
-                  className={`w-16 h-16 bg-gradient-to-br ${value.gradient} rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-shadow duration-300`}
+                  className={`w-16 h-16 bg-gradient-to-br ${value.gradient} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-xl transition-shadow duration-300`}
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.2 }}
                 >

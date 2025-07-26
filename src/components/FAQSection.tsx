@@ -6,41 +6,40 @@ import { motion, AnimatePresence } from 'framer-motion';
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
- const faqs = [
-  {
-    question: "How do I connect with doctors or specialists from other countries?",
-    answer: "You can browse our provider network by specialty, language, or location. Once you find a professional that matches your needs, you can request a virtual consultation directly through the platform."
-  },
-  {
-    question: "What languages are supported for medical consultations?",
-    answer: "We support 13 major European languages including English, Latvian, Lithuanian, and Estonian, German, French, Spanish, Polish, Swedish, Norwegian, Danish, Finnish, and Czech. Interpreter support is available for video calls when needed."
-  },
-  {
-    question: "Is the platform free to use?",
-    answer: "Basic services like health tracking, community support groups, and educational content are free. Fees may apply for professional consultations, diagnostic services, or premium wellness programs."
-  },
-  {
-    question: "Can I join international health support groups?",
-    answer: "Yes! We offer condition-based and interest-based groups where users can connect across borders to share experiences, get peer support, and access curated wellness content."
-  },
-  {
-    question: "Are medical services recognized across countries?",
-    answer: "We work with licensed professionals who meet EU standards. While prescriptions and referrals are valid within supported regions, please check with your local provider for country-specific regulations."
-  },
-  {
-    question: "How do I access my medical records or share them with doctors?",
-    answer: "Your digital health record is stored securely on the platform. You can upload reports, track symptoms, and grant permission to care providers across borders for seamless coordination."
-  },
-  {
-    question: "What kind of health and wellness resources are available?",
-    answer: "We offer mental health tools, chronic illness management guides, telehealth programs, nutrition plans, rehabilitation support, and evidence-based wellness articles reviewed by healthcare professionals."
-  },
-  {
-    question: "How secure is my medical and personal information?",
-    answer: "Your data is fully encrypted and protected under GDPR standards. You control who sees your health information, and we never share your data with third parties without your explicit consent."
-  }
-];
-
+  const faqs = [
+    {
+      question: "How do I join study groups with international students?",
+      answer: "Simply browse our community section, filter by your subject or language preference, and click 'Join Group'. You can also create your own study group and invite students from specific countries or universities."
+    },
+    {
+      question: "What languages are supported on the platform?",
+      answer: "We support 13 major European languages including English, German, French, Spanish, Italian, Dutch, Portuguese, Polish, Swedish, Norwegian, Danish, Finnish, and Czech. All content and communication can be accessed in your preferred language."
+    },
+    {
+      question: "Is the platform free to use?",
+      answer: "Yes! Basic features including community access, study groups, language exchange, and basic learning tools are completely free. We also offer premium features for advanced collaboration tools and priority support."
+    },
+    {
+      question: "How does the language exchange program work?",
+      answer: "Our language exchange connects you with native speakers who want to learn your language. You can schedule video calls, participate in group conversations, and access structured learning materials designed by language education experts."
+    },
+    {
+      question: "Can I get academic credits for participating?",
+      answer: "Many universities across Europe recognize participation in our international programs. We provide certificates and detailed participation reports that you can submit to your academic advisors for credit consideration."
+    },
+    {
+      question: "How do I find students from specific universities?",
+      answer: "Use our advanced search filters to find students by university, major, academic year, or specific courses. You can also browse university-specific groups and join discussions relevant to your academic interests."
+    },
+    {
+      question: "What kind of learning resources are available?",
+      answer: "We offer a vast library of educational content including interactive courses, research collaboration tools, virtual study materials, video lectures from European universities, and access to academic databases."
+    },
+    {
+      question: "How secure is my personal information?",
+      answer: "We take privacy seriously and comply with GDPR regulations. All personal data is encrypted, and we never share your information with third parties without explicit consent. You have full control over your privacy settings."
+    }
+  ];
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -74,7 +73,7 @@ const FAQSection = () => {
             viewport={{ once: true }}
           />
           <p className="text-lg text-gray-600 dark:text-gray-300">
-            Find answers to common questions about our healthcare platform
+            Find answers to common questions about our educational platform
           </p>
         </motion.div>
 
@@ -135,7 +134,7 @@ const FAQSection = () => {
         >
           <h3 className="text-2xl font-bold mb-4">Still have questions?</h3>
           <p className="mb-6 text-white/90">
-            Our support team is here to help you get started on your health and wellness journey.
+            Our support team is here to help you get started with your learning journey
           </p>
           <motion.button 
             className="bg-white text-wellness-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors"
