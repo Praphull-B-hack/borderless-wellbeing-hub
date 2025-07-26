@@ -1,43 +1,28 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
+interface AiHealthModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
 const countries = [
-  '🇺🇸 United States',
-  '🇩🇪 Germany',
-  '🇨🇦 Canada',
-  '🇬🇧 United Kingdom',
-  '🇫🇷 France',
-  '🇯🇵 Japan',
-  '🇸🇪 Sweden',
-  '🇮🇳 India',
-  '🇧🇷 Brazil',
-  '🇦🇺 Australia',
-  '🇨🇭 Switzerland',
-  '🇳🇴 Norway',
-  '🇳🇱 Netherlands',
-  '🇪🇸 Spain',
-  '🇮🇹 Italy',
-  '🇰🇷 South Korea',
-  '🇨🇳 China',
-  '🇲🇽 Mexico',
-  '🇿🇦 South Africa',
-  '🇸🇬 Singapore',
-  '🇩🇰 Denmark',
-  '🇧🇪 Belgium',
-  '🇦🇹 Austria',
-  '🇮🇱 Israel',
-  '🇸🇦 Saudi Arabia',
-  '🇱🇹 Lithuania',
-  '🇱🇻 Latvia',
-  '🇪🇪 Estonia',
+  '🇺🇸 United States', '🇩🇪 Germany', '🇨🇦 Canada', '🇬🇧 United Kingdom',
+  '🇫🇷 France', '🇯🇵 Japan', '🇸🇪 Sweden', '🇮🇳 India', '🇧🇷 Brazil',
+  '🇦🇺 Australia', '🇨🇭 Switzerland', '🇳🇴 Norway', '🇳🇱 Netherlands',
+  '🇪🇸 Spain', '🇮🇹 Italy', '🇰🇷 South Korea', '🇨🇳 China', '🇲🇽 Mexico',
+  '🇿🇦 South Africa', '🇸🇬 Singapore', '🇩🇰 Denmark', '🇧🇪 Belgium',
+  '🇦🇹 Austria', '🇮🇱 Israel', '🇸🇦 Saudi Arabia', '🇱🇹 Lithuania',
+  '🇱🇻 Latvia', '🇪🇪 Estonia',
 ];
 
-  const GROQ_API_KEY = "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";
-  const GROQ_MODEL = 'llama-3.3-70b-versatile';
+const GROQ_API_KEY = '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';
+const GROQ_MODEL = 'llama-3.3-70b-versatile';
 
-const AiHealth = () => {
+const AiHealthModal: React.FC<AiHealthModalProps> = ({ isOpen, onClose }) => {
   const [country1, setCountry1] = useState('');
   const [country2, setCountry2] = useState('');
   const [response, setResponse] = useState('');
@@ -87,180 +72,185 @@ Use **Markdown format** with a clear table and bullet points.`;
       const aiContent = data.choices?.[0]?.message?.content || 'No response from AI.';
       setResponse(aiContent);
     } catch (err) {
-      setResponse('An error occurred while fetching the comparison.');
       console.error(err);
+      setResponse('An error occurred while fetching the comparison.');
     } finally {
       setLoading(false);
     }
   };
 
-  const dropdownStyle = {
-    flex: 1,
-    padding: '0.5rem 0.75rem',
-    borderRadius: '0.75rem',
-    backgroundColor: '#FFFFFF',
-    border: '1px solid #5C8C85',
-    color: '#03353E',
-    fontSize: '0.875rem',
-    outline: 'none',
-    boxShadow: '0 0 0 2px transparent',
-    transition: 'box-shadow 0.2s ease-in-out',
+  const modalVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.3, ease: 'easeOut' },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.95,
+      transition: { duration: 0.2, ease: 'easeIn' },
+    },
+  };
+
+  const backdropVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+    exit: { opacity: 0 },
   };
 
   return (
-    <div
-      className="flex flex-col h-full space-y-4"
-      style={{ backgroundColor: '#F1E8DB', padding: '1rem', borderRadius: '1rem' }}
-    >
-      <div
-        style={{ color: '#5C8C85', fontWeight: 'bold', fontSize: '1.125rem' }}
-      >
-        Compare Healthcare Systems
-      </div>
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-10">
+          {/* Backdrop */}
+          <motion.div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={onClose}
+            variants={backdropVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          />
 
-      <div className="flex flex-col sm:flex-row gap-4">
-        <select
-          value={country1}
-          onChange={e => setCountry1(e.target.value)}
-          style={dropdownStyle}
-          onFocus={e => e.currentTarget.style.boxShadow = '0 0 0 2px #D1835A'}
-          onBlur={e => e.currentTarget.style.boxShadow = '0 0 0 2px transparent'}
-        >
-          <option value="">Select Country 1</option>
-          {countries.map(c => (
-            <option key={c} value={c}>{c}</option>
-          ))}
-        </select>
-
-        <select
-          value={country2}
-          onChange={e => setCountry2(e.target.value)}
-          style={dropdownStyle}
-          onFocus={e => e.currentTarget.style.boxShadow = '0 0 0 2px #D1835A'}
-          onBlur={e => e.currentTarget.style.boxShadow = '0 0 0 2px transparent'}
-        >
-          <option value="">Select Country 2</option>
-          {countries.map(c => (
-            <option key={c} value={c}>{c}</option>
-          ))}
-        </select>
-      </div>
-
-      <button
-  onClick={handleCompare}
-  disabled={!country1 || !country2 || country1 === country2 || loading}
-  style={{
-    width: '100%',
-    backgroundColor: '#D1835A',
-    color: '#FFFFFF',
-    padding: '0.5rem',
-    borderRadius: '0.75rem',
-    fontWeight: 600,
-    fontSize: '1rem',
-    border: 'none',
-    opacity: !country1 || !country2 || country1 === country2 || loading ? 0.5 : 1,
-    cursor: 'pointer',
-    transition: 'background-color 0.2s ease-in-out',
-    outline: 'none',
-    boxShadow: 'none',
-  }}
-  onMouseEnter={e => {
-    if (!e.currentTarget.disabled) e.currentTarget.style.backgroundColor = '#c6734e';
-  }}
-  onMouseLeave={e => {
-    if (!e.currentTarget.disabled) e.currentTarget.style.backgroundColor = '#D1835A';
-  }}
-  onFocus={e => {
-    e.currentTarget.style.outline = 'none';
-    e.currentTarget.style.boxShadow = 'none';
-  }}
->
-  {loading ? 'Comparing...' : 'Compare'}
-</button>
-
-      <div
-        className="flex-1 overflow-y-auto max-h-[500px] pt-4 text-sm"
-        style={{
-          borderTop: '1px solid #D1835A',
-          color: '#5E8E87',
-        }}
-      >
-        {response && (
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            components={{
-              h1: ({ node, ...props }) => (
-                <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#5C8C85' }} {...props} />
-              ),
-              h2: ({ node, ...props }) => (
-                <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#5C8C85' }} {...props} />
-              ),
-              h3: ({ node, ...props }) => (
-                <h3 style={{ fontSize: '1.125rem', fontWeight: 'bold', color: '#5C8C85' }} {...props} />
-              ),
-              p: ({ node, ...props }) => (
-                <p style={{ marginTop: '0.5rem', marginBottom: '0.5rem', color: '#5E8E87' }} {...props} />
-              ),
-              ul: ({ node, ...props }) => (
-                <ul style={{ marginTop: '0.5rem', paddingLeft: '1.25rem', color: '#5E8E87' }} {...props} />
-              ),
-              ol: ({ node, ...props }) => (
-                <ol style={{ marginTop: '0.5rem', paddingLeft: '1.25rem', color: '#5E8E87' }} {...props} />
-              ),
-              li: ({ node, ...props }) => (
-                <li style={{ marginBottom: '0.25rem' }}>{props.children}</li>
-              ),
-              table: ({ children }) => (
-                <table
-                  style={{
-                    width: '100%',
-                    borderCollapse: 'collapse',
-                    fontSize: '0.875rem',
-                    marginTop: '1rem',
-                    marginBottom: '1rem',
-                  }}
-                >
-                  {children}
-                </table>
-              ),
-              thead: ({ children }) => (
-                <thead style={{ backgroundColor: '#5C8C85', color: '#FFFFFF' }}>{children}</thead>
-              ),
-              th: ({ children }) => (
-                <th
-                  style={{
-                    padding: '0.5rem',
-                    border: '1px solid #D1835A',
-                    fontWeight: '600',
-                    textAlign: 'left',
-                  }}
-                >
-                  {children}
-                </th>
-              ),
-              td: ({ children }) => (
-                <td
-                  style={{
-                    padding: '0.5rem',
-                    border: '1px solid #D1835A',
-                    textAlign: 'left',
-                    verticalAlign: 'top',
-                  }}
-                >
-                  {children}
-                </td>
-              ),
-              tr: ({ children }) => (
-                <tr style={{ backgroundColor: '#FFFFFF' }}>{children}</tr>
-              ),
-            }}
+          {/* Modal */}
+          <motion.div
+            className="relative w-full max-w-4xl mx-4 rounded-3xl overflow-hidden bg-white border border-[#E5E7EB] shadow-sm transition-all duration-300"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
           >
-            {response}
-          </ReactMarkdown>
-        )}
-      </div>
-    </div>
+            <div className="relative flex flex-col p-8 space-y-6 text-[#1F2937] font-sans transition-all duration-300">
+
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Title */}
+              <h2 className="text-2xl font-bold text-[#1E3A3A] tracking-tight">
+                Compare Healthcare Systems
+              </h2>
+
+              {/* Dropdowns */}
+              <div className="flex flex-col md:flex-row gap-4">
+                <select
+                  value={country1}
+                  onChange={(e) => setCountry1(e.target.value)}
+                  className="flex-1 border border-[#CBD5E1] rounded-xl px-4 py-2 text-sm bg-white shadow-sm focus:ring-2 focus:ring-[#3C8C84] focus:outline-none"
+                >
+                  <option value="">Select Country 1</option>
+                  {countries.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+
+                <select
+                  value={country2}
+                  onChange={(e) => setCountry2(e.target.value)}
+                  className="flex-1 border border-[#CBD5E1] rounded-xl px-4 py-2 text-sm bg-white shadow-sm focus:ring-2 focus:ring-[#3C8C84] focus:outline-none"
+                >
+                  <option value="">Select Country 2</option>
+                  {countries.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Button */}
+              <motion.button
+                whileTap={{ scale: 0.97 }}
+                whileHover={{ scale: 1.02 }}
+                onClick={handleCompare}
+                disabled={!country1 || !country2 || country1 === country2 || loading}
+                className={`w-full md:w-auto bg-[#3C8C84] text-white px-6 py-2 rounded-xl font-semibold text-sm transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:ring-[#3C8C84] ${!country1 || !country2 || country1 === country2 || loading
+                    ? 'opacity-50 cursor-not-allowed'
+                    : ''
+                  }`}
+              >
+                {loading ? (
+                  <span className="flex items-center gap-2">
+                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                      />
+                    </svg>
+                    Comparing...
+                  </span>
+                ) : (
+                  'Compare'
+                )}
+              </motion.button>
+
+              {/* Response */}
+              <div
+                className={`border border-[#E5E7EB] rounded-xl px-4 py-3 shadow-sm bg-white overflow-y-auto transition-all duration-300 ${response ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+              >
+                {response && (
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      h1: ({ node, ...props }) => (
+                        <h1 className="text-xl font-bold text-[#1E3A3A] mt-4 mb-2" {...props} />
+                      ),
+                      h2: ({ node, ...props }) => (
+                        <h2 className="text-lg font-semibold text-[#1E3A3A] mt-4 mb-2" {...props} />
+                      ),
+                      p: ({ node, ...props }) => (
+                        <p className="my-2 text-[#374151]" {...props} />
+                      ),
+                      ul: ({ node, ...props }) => (
+                        <ul className="pl-5 list-disc my-2 text-[#374151]" {...props} />
+                      ),
+                      ol: ({ node, ...props }) => (
+                        <ol className="pl-5 list-decimal my-2 text-[#374151]" {...props} />
+                      ),
+                      li: ({ node, ...props }) => <li className="mb-1">{props.children}</li>,
+                      table: ({ children }) => (
+                        <table className="w-full border-collapse my-4 text-sm">{children}</table>
+                      ),
+                      thead: ({ children }) => (
+                        <thead className="bg-[#3C8C84]">{children}</thead>
+                      ),
+                      th: ({ children }) => (
+                        <th className="border border-[#E5E7EB] px-3 py-2 text-left font-medium text-white !text-white bg-[#3C8C84]">
+                          {children}
+                        </th>
+                      ),
+                      td: ({ children }) => (
+                        <td className="border border-[#E5E7EB] px-3 py-2 align-top">{children}</td>
+                      ),
+                      tr: ({ children }) => <tr className="bg-white">{children}</tr>,
+                    }}
+                  >
+                    {response}
+                  </ReactMarkdown>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
   );
 };
 
-export default AiHealth;
+export default AiHealthModal;

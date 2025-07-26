@@ -98,49 +98,38 @@ const AiChatModal = () => {
   ];
 
   return (
-    <div
-      className="w-full h-full rounded-2xl flex flex-col overflow-hidden"
-      style={{ backgroundColor: '#F1E8DB' }}
-    >
+    <div className="w-full h-full flex flex-col overflow-hidden rounded-2xl bg-[#F1E8DB]">
       {/* Header */}
-      <div className="p-4 text-sm flex justify-between items-center" style={{ backgroundColor: '#5C8C85', color: '#FFFFFF' }}>
+      <div className="flex justify-between items-center p-4 text-sm bg-[#5C8C85] text-white">
         <span className="font-semibold">AI Assistant</span>
-        <div className="flex flex-col gap-1 items-end">
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-white whitespace-nowrap">Select your region:</span>
-            <select
-              value={country}
-              onChange={e => setCountry(e.target.value)}
-              className="text-sm rounded-md px-2 py-1"
-              style={{ color: '#03353E' }}
-            >
-              {countries.map(c => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </select>
-            <input
-              type="text"
-              value={city}
-              onChange={e => setCity(e.target.value)}
-              placeholder="Postal Code or City"
-              className="text-sm rounded-md px-2 py-1"
-              style={{ color: '#03353E' }}
-            />
-          </div>
+        <div className="flex items-center gap-2">
+          <span className="text-sm">Select your region:</span>
+          <select
+            value={country}
+            onChange={e => setCountry(e.target.value)}
+            className="text-sm rounded-md px-2 py-1 text-[#03353E]"
+          >
+            {countries.map(c => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+          <input
+            type="text"
+            value={city}
+            onChange={e => setCity(e.target.value)}
+            placeholder="Postal Code or City"
+            className="text-sm rounded-md px-2 py-1 text-[#03353E]"
+          />
         </div>
       </div>
 
       {/* Quick Prompts */}
-      <div className="px-3 py-2 flex flex-wrap gap-2" style={{ backgroundColor: '#FFFFFF' }}>
+      <div className="px-3 py-2 flex flex-wrap gap-2 bg-white">
         {quickPrompts.map((prompt, idx) => (
           <button
             key={idx}
             onClick={() => setNewMessage(prompt)}
-            className="text-xs px-3 py-1 rounded-full"
-            style={{
-              backgroundColor: '#E9D9CC',
-              color: '#03353E'
-            }}
+            className="text-xs px-3 py-1 rounded-full bg-[#E9D9CC] text-[#03353E]"
           >
             {prompt}
           </button>
@@ -148,75 +137,57 @@ const AiChatModal = () => {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 p-4 overflow-y-auto space-y-4 border-l border-r border-[#D1835A]">
-        {messages.map(msg => (
-          <div key={msg.id} className="flex items-start space-x-3">
-            <img
-              src={msg.avatar}
-              alt={msg.user}
-              className="w-8 h-8 rounded-full object-cover"
-            />
-            <div className="flex-1">
-              <div className="flex items-center justify-between text-xs">
-                <span style={{ color: '#03353E', fontWeight: 600 }}>{msg.user}</span>
-                <span style={{ color: '#5E8E87' }}>{msg.time}</span>
+      <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-white">
+        {messages.map(msg => {
+          const isUser = msg.user === 'You';
+          return (
+            <div key={msg.id} className={`flex ${isUser ? 'justify-end' : 'justify-start'} items-start space-x-2`}>
+              {!isUser && (
+                <img src={msg.avatar} alt={msg.user} className="w-8 h-8 rounded-full object-cover" />
+              )}
+              <div>
+                <div className="text-xs mb-1 font-semibold text-[#5E8E87]">{msg.user}</div>
+                <div
+                  className={`rounded-2xl px-4 py-3 text-sm max-w-[75%] whitespace-pre-wrap break-words ${
+                    isUser
+                      ? 'bg-[#E9D9CC] text-[#03353E]'
+                      : 'bg-[#5C8C85] text-white'
+                  }`}
+                  dangerouslySetInnerHTML={{
+                    __html: msg.message
+                      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                      .replace(/\n/g, '<br />')
+                      .replace(/(\p{Emoji_Presentation}|\p{Extended_Pictographic})/gu, '<span class="inline text-lg">$1</span>')
+                  }}
+                />
               </div>
-              <div
-                className="mt-1 p-3 rounded-2xl text-sm leading-relaxed break-words"
-                style={{ backgroundColor: '#FFFFFF', color: '#5E8E87' }}
-                dangerouslySetInnerHTML={{
-                  __html:
-                    msg.user === 'AI Agent'
-                      ? msg.message
-                          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                          .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                          .replace(/\n/g, '<br />')
-                          .replace(/(\p{Emoji_Presentation}|\p{Extended_Pictographic})/gu, '<span style="font-size:1.1em;vertical-align:middle;">$1</span>')
-                      : msg.message
-                }}
-              />
+              {isUser && (
+                <img src={msg.avatar} alt={msg.user} className="w-8 h-8 rounded-full object-cover" />
+              )}
             </div>
-          </div>
-        ))}
-        {isTyping && <div className="text-sm" style={{ color: '#5E8E87' }}>AI is typing...</div>}
+          );
+        })}
+        {isTyping && <div className="text-sm text-[#5E8E87]">AI is typing...</div>}
         <div ref={messagesEndRef} className="h-px" />
       </div>
 
       {/* Input */}
-      <div className="p-3 flex items-center space-x-2 border border-[#D1835A] rounded-b-2xl" style={{ backgroundColor: '#F1E8DB' }}>
-        <div className="relative flex-1">
-          <input
-            type="text"
-            value={newMessage}
-            onChange={e => setNewMessage(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder="Type your message..."
-            style={{
-              width: '100%',
-              padding: '0.5rem 1rem',
-              backgroundColor: '#FFFFFF',
-              borderRadius: '1rem',
-              fontSize: '0.875rem',
-              color: '#03353E',
-              outline: 'none'
-            }}
-          />
-        </div>
+      <div className="p-3 flex items-center gap-2 border-t border-[#D1835A] bg-[#F1E8DB]">
+        <input
+          type="text"
+          value={newMessage}
+          onChange={e => setNewMessage(e.target.value)}
+          onKeyPress={handleKeyPress}
+          placeholder="Type your message..."
+          className="flex-1 px-4 py-2 text-sm rounded-full bg-white text-[#03353E] outline-none"
+        />
         <button
           onClick={handleSendMessage}
           disabled={!newMessage.trim()}
-          style={{
-            backgroundColor: '#D1835A',
-            color: '#FFFFFF',
-            padding: '0.5rem 0.75rem',
-            borderRadius: '0.75rem',
-            fontWeight: 600,
-            fontSize: '1rem',
-            opacity: !newMessage.trim() ? 0.5 : 1,
-            cursor: !newMessage.trim() ? 'not-allowed' : 'pointer'
-          }}
+          className="p-2 rounded-xl bg-[#D1835A] text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <Send className="h-5 w-5" />
+          <Send className="w-5 h-5" />
         </button>
       </div>
     </div>

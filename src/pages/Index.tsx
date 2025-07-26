@@ -14,7 +14,7 @@ import FAQSection from '../components/FAQSection';
 import StudentIdeasSection from '../components/StudentIdeasSection';
 import Footer from '../components/Footer';
 import AuthModal from '../components/AuthModal';
-import DemoModal from '../components/DemoModal'; // ← NEW
+import AiHealthModal from '../components/AiHealth'; // ← NEW
 import AiModal from '../components/AiModal'; // ← NEW
 import { motion } from 'framer-motion';
 
@@ -70,7 +70,7 @@ const Index = () => {
         onModeChange={setAuthMode}
       />
 
-      <DemoModal 
+      <AiHealthModal
         isOpen={isDemoModalOpen}
         onClose={() => setIsDemoModalOpen(false)}
       />

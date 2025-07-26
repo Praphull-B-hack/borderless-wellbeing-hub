@@ -10,22 +10,16 @@ interface DemoModalProps {
 
 const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
   const modalVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 50 },
+    hidden: { opacity: 0, scale: 0.95 },
     visible: {
       opacity: 1,
       scale: 1,
-      y: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 300,
-        damping: 30
-      }
+      transition: { duration: 0.3, ease: 'easeOut' }
     },
     exit: {
       opacity: 0,
-      scale: 0.8,
-      y: 50,
-      transition: { duration: 0.2 }
+      scale: 0.95,
+      transition: { duration: 0.2, ease: 'easeIn' }
     }
   };
 
@@ -41,7 +35,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Backdrop */}
           <motion.div
-            className="absolute inset-0 bg-black/60 backdrop-blur-md"
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={onClose}
             variants={backdropVariants}
             initial="hidden"
@@ -51,12 +45,7 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
 
           {/* Modal */}
           <motion.div
-            className="relative rounded-3xl shadow-2xl w-full max-w-7xl h-[90vh] max-h-screen mx-4 overflow-hidden"
-            style={{
-              backgroundColor: '#F1E8DB',
-              border: '1px solid #D1835A'
-            }}
-            variants={modalVariants}
+            className="relative w-full max-w-7xl h-[90vh] max-h-screen mx-4 rounded-3xl overflow-hidden"
             initial="hidden"
             animate="visible"
             exit="exit"
@@ -65,7 +54,19 @@ const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="absolute top-6 right-6 text-[#5C8C85] hover:bg-[#e3d5c5] p-2 rounded-full transition-colors z-10"
+                className="absolute top-6 right-6 p-2 rounded-full"
+                style={{
+                  color: '#5E8E87',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#5C8C8520';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }}
               >
                 <X className="h-5 w-5" />
               </button>

@@ -45,11 +45,7 @@ const AiModal: React.FC<AiModalProps> = ({ isOpen, onClose }) => {
 
           {/* Modal */}
           <motion.div
-            className="relative w-full max-w-7xl h-[90vh] max-h-screen mx-4 rounded-3xl shadow-xl overflow-hidden border"
-            style={{
-              backgroundColor: '#F1E8DB',
-              borderColor: '#D1835A',
-            }}
+            className="relative w-full max-w-7xl h-[90vh] max-h-screen mx-4 rounded-3xl overflow-hidden"
             variants={modalVariants}
             initial="hidden"
             animate="visible"
