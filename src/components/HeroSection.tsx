@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  ArrowRight,
-  Globe,
-  Users,
-  Heart,
-  BookOpen,
-  MessageSquare,
-  Lightbulb
-} from 'lucide-react';
+import { ArrowRight, Globe, Users, Heart, BookOpen, MessageSquare, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -33,7 +25,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
       id="home"
       className="relative min-h-screen flex items-center justify-center bg-[#f2e8dc] text-black overflow-hidden dark:bg-[#1f2937] dark:text-gray-300"
     >
-      {/* Floating icons */}
+      {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         {floatingIcons.map(({ icon: Icon, delay, x, y }, index) => (
           <motion.div
@@ -44,46 +36,49 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
               scale: [0, 1, 1.2, 1],
               x: [0, x * 0.5, x, x * 0.8],
               y: [0, y * 0.5, y, y * 0.8],
-              rotate: [0, 180, 360]
+              rotate: [0, 180, 360],
             }}
             transition={{
               duration: 2,
               delay: delay,
               repeat: Infinity,
-              repeatType: 'reverse',
-              ease: 'easeInOut'
+              repeatType: "reverse",
+              ease: "easeInOut",
             }}
             style={{
               left: `${20 + index * 15}%`,
-              top: `${15 + index * 12}%`
+              top: `${15 + index * 12}%`,
             }}
           >
-            <Icon size={40} className="text-black/30 dark:text-white/30" />
+            <Icon
+              size={40}
+              className="text-black/30 dark:text-white/30"
+            />
           </motion.div>
         ))}
       </div>
 
-      {/* Hero content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
+          {/* Main heading */}
           <motion.h1 className="text-4xl md:text-6xl font-extrabold mb-6 font-poppins">
             <motion.span
               className="inline-block text-black dark:text-gray-100"
               initial={{ opacity: 0, x: -100, rotate: -180 }}
               animate={{ opacity: 1, x: 0, rotate: 0 }}
-              transition={{ duration: 1, delay: 0.3, type: 'spring', stiffness: 100 }}
+              transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 100 }}
             >
               Borderless
-            </motion.span>{' '}
+            </motion.span>{" "}
             <motion.span
               className="inline-block text-[#1f4f4f] dark:text-teal-400"
               initial={{ opacity: 0, x: 100, rotate: 180 }}
               animate={{ opacity: 1, x: 0, rotate: 0 }}
-              transition={{ duration: 1, delay: 0.5, type: 'spring', stiffness: 100 }}
+              transition={{ duration: 1, delay: 0.5, type: "spring", stiffness: 100 }}
             >
               Wellbeing
             </motion.span>
@@ -98,7 +93,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
             {t('hero.subtitle')}
           </motion.p>
 
-          {/* CTA buttons */}
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             initial={{ opacity: 0, y: 30 }}
@@ -127,7 +121,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
             </motion.div>
           </motion.div>
 
-          {/* Stats */}
           <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 50 }}
@@ -135,9 +128,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
             transition={{ duration: 0.8, delay: 1.1 }}
           >
             {[
-              { number: '1M+', label: t('Users') },
-              { number: '7+', label: t('Countries') },
-              { number: '24/7', label: t('Support') }
+              { number: "1M+", label: t('Users') },
+              { number: "7+", label: t('Countries') },
+              { number: "24/7", label: t('Support') }
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -151,20 +144,18 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
                   className="text-3xl font-bold text-[#1f4f4f] dark:text-teal-400 mb-2"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1.5 + index * 0.1, type: 'spring' }}
+                  transition={{ duration: 0.5, delay: 1.5 + index * 0.1, type: "spring" }}
                 >
                   {stat.number}
                 </motion.div>
-                <div className="text-gray-700 font-medium dark:text-gray-300">
-                  {stat.label}
-                </div>
+                <div className="text-gray-700 font-medium dark:text-gray-300">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         initial={{ opacity: 0, y: 20 }}

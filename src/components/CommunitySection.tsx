@@ -81,8 +81,8 @@ const CommunitySection = () => {
               </h3>
             </div>
 
-            <div className="space-y-6">
-              <Card className="bg-white rounded-xl">
+            <div className="space-y-6 mt-7">
+              <Card className="bg-white rounded-xl h-[14rem]">
                 <CardHeader>
                   <CardTitle className="text-[#03353E]">Find a Doctor</CardTitle>
                 </CardHeader>
@@ -90,13 +90,15 @@ const CommunitySection = () => {
                   <CardDescription className="mb-4 text-[#03353E]">
                     Book an appointment with verified doctors near you.
                   </CardDescription>
-                  <button className="px-4 py-2 bg-[#D1835A] text-white rounded hover:opacity-90">
+                  <div className='flex justify-start'>
+                  <button className="justify-end px-4 py-2 bg-[#D1835A] text-white rounded hover:bg-[#f4d3c2]">
                     Search Doctors
                   </button>
+                  </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white rounded-xl">
+              <Card className="bg-white rounded-xl h-[14rem]">
                 <CardHeader>
                   <CardTitle className="text-[#03353E]">Mental Health Support</CardTitle>
                 </CardHeader>
@@ -104,9 +106,11 @@ const CommunitySection = () => {
                   <CardDescription className="mb-4 text-[#03353E]">
                     Get connected with licensed psychiatrists and counselors.
                   </CardDescription>
-                  <button className="px-4 py-2 bg-[#5C8C85] text-white rounded hover:opacity-90">
+                  <div className='flex justify-start'>
+                  <button className="px-4 py-2 bg-[#5C8C85] text-white rounded hover:hover:bg-[#d4d8d8]">
                     Find Help
                   </button>
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -119,7 +123,7 @@ const CommunitySection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center space-x-2 mb-4 justify-center">
+            <div className="flex items-center space-x-2 mb-4 justify-center ">
               <MessageCircle className="h-5 w-5 text-[#5C8C85]" />
               <h3 className="text-xl font-semibold text-[#03353E]">
                 Community Chat
@@ -175,7 +179,7 @@ const CommunitySection = () => {
                           </div>
                         </div>
                         <motion.button
-                          className="bg-[#5C8C85] text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90"
+                          className="bg-[#5C8C85] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#d4d8d8]"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                         >
@@ -188,7 +192,7 @@ const CommunitySection = () => {
               ))}
             </div>
 
-            <motion.div
+            {/* <motion.div
               className="mt-8 bg-white rounded-xl p-6"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
@@ -206,7 +210,7 @@ const CommunitySection = () => {
                   <div className="text-sm text-[#5C8C85]">Volunteer Opportunities</div>
                 </div>
               </div>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </div>
       </div>
