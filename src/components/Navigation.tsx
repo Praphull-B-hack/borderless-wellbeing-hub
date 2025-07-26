@@ -148,7 +148,7 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthClick, onDemoClick, onAiC
                   <Button
                     variant="ghost"
                     onClick={() => onAuthClick('login')}
-                    className="w-full justify-start bg-transparent text-[#5C8C85] hover:bg-[#5C8C85]/10"
+                    className="w-full justify-center bg-transparent text-[#5C8C85] hover:bg-[#5C8C85]/10"
                   >
                     {t('nav.signIn')}
                   </Button>

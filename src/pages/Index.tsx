@@ -42,7 +42,11 @@ const Index = () => {
       <Navigation onAuthClick={openAuthModal} onDemoClick={openDemoModal} onAiClick={openAiModal}/>
 
       <main>
-        <HeroSection onGetStarted={() => {}} />
+        <HeroSection
+          onGetStarted={openAuthModal}
+          onDemoClick={openDemoModal}
+          onAiClick={openAiModal}
+        />
         <MissionSection />
         <ServicesSection />
         <DashboardSection />

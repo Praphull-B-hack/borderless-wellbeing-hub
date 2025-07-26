@@ -19,7 +19,7 @@ const Footer = () => {
                 className="h-full w-auto object-contain"
               />
             </div>
-            <div className="flex space-x-4 ms-20">
+            <div className="flex space-x-4 ms-20 pl-11 md:pl-1">
               <a href="#" className="text-[#5C8C85] hover:text-[#D1835A] transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>

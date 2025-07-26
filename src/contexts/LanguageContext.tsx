@@ -25,7 +25,7 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.title3': 'Across Borders',
     'hero.subtitle': 'Join the digital space where health, connection, and community know no borders and celebrates diversity, encourages self-care, and brings people together across cultures. Explore tools, support, and shared experiences to nurture mental and physical wellbeing- wherever you are.',
     'hero.startJourney': 'Start Your Learning Journey',
-    'hero.learnMore': 'Learn More',
+    'hero.learnMore': 'Try AI Tools',
     'stats.members': 'Student Members',
     'stats.countries': 'Countries',
     'stats.support': 'Educational Support',
